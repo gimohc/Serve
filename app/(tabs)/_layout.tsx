@@ -1,45 +1,44 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import { Tabs } from "expo-router";
+import { Text, StyleSheet } from "react-native";
+import React from "react";
+import { images } from "@/constants/icons";
+import TabBarIcon from "@/components/tabBarIcon";
+import { colors } from "@/constants/colors";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+const TabsLayout = () => {
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+      screenOptions={({ route }) => ({
+        
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
+        tabBarStyle: styles.container,
+        tabBarActiveBackgroundColor: colors.SELECTED_TAB_BAR_BG,
+        tabBarInactiveBackgroundColor: colors.UNSELECTED_TAB_BAR_BG,
+
+        tabBarLabel: () => (
+          <Text style={styles.tabBarLabel}>
+            {route.name.charAt(0).toUpperCase() + route.name.substring(1)}
+          </Text>
+        ),
+      })}
+    >
+      <Tabs.Screen name="marketplace" options={{ tabBarIcon: ({ focused }) => (<TabBarIcon source={images.marketplace} focused={focused} />)}}/>
+      <Tabs.Screen name="history" options={{ tabBarIcon: ({ focused }) => (<TabBarIcon source={images.history} focused={focused} />)}}/>
+      <Tabs.Screen name="chat" options={{ tabBarIcon: ({ focused }) => (<TabBarIcon source={images.chat} focused={focused} />)}} />
     </Tabs>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    padding:15,
+    height:65,
+  },
+  tabBarLabel: {
+    fontSize:16,
+    marginTop:5,
+    fontWeight:"bold",
+  }
+})
+export default TabsLayout;
+
