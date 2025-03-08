@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-const marketplace = () => {
+const Marketplace = () => {
   return (
     <View>
       <Text>marketplace</Text>
@@ -9,6 +9,6 @@ const marketplace = () => {
   )
 }
 
-export default marketplace
+export default Marketplace
 
 const styles = StyleSheet.create({})

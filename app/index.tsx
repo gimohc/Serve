@@ -1,17 +1,19 @@
 import { router } from "expo-router";
 import { useEffect } from "react";
-import { Text, View } from "react-native";
+import { StatusBar, View } from "react-native";
 
 export default function Index() {
  
   useEffect(() => {
     const id = setTimeout(() => {
       router.replace("./(tabs)/marketplace")
-    }, 2000);
+    }, 1500);
     return () => clearTimeout(id);
   }, [])
 
   return (
+    <>
+    <StatusBar hidden={true}/>
     <View
       style={{
         flex: 1,
@@ -21,5 +23,15 @@ export default function Index() {
       }}
     >
     </View>
+    </>
   );
 }
+
+/*
+  10s -> cleaning services
+  20s -> car services
+  30s -> pc services
+  40s -> gardening services
+
+
+*/
