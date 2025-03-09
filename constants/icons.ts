@@ -5,5 +5,9 @@ export const images = {
     logo: require("../assets/images/placeholder.png"),
     profile: require("../assets/images/profile-icon.png"),
     support: require("../assets/images/headphone-icon.png"),
+    carService: require("../assets/images/car-repair-service-icon.png"),
+    computerService: require("../assets/images/computer-icon.png"),
+    gardeningService: require("../assets/images/forest-tree-icon.png"),
+    cleaningService: require("../assets/images/housekeeping-icon.png"),
 
 } 

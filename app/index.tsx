@@ -35,3 +35,11 @@ export default function Index() {
 
 
 */
+
+// for marketplace.tsx
+// better to map straight from database
+// database is going to look like Services (main table): cleaning car computer and gardening,
+// each of the main table elements has a subtable of each option in that table
+// each option has multiple options of stores
+// can preset all of the background colors in a constant array for mapping
+
