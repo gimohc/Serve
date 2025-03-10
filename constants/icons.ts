@@ -9,5 +9,6 @@ export const images = {
     computerService: require("../assets/images/computer-icon.png"),
     gardeningService: require("../assets/images/forest-tree-icon.png"),
     cleaningService: require("../assets/images/housekeeping-icon.png"),
-
+    star: require("../assets/images/star-icon.png"),
+    emptyStar: require("../assets/images/black-star-icon.png")
 } 

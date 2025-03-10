@@ -7,7 +7,7 @@ import { images } from "@/constants/icons";
 const Marketplace = () => {
   const services = ["Cleaning", "Car", "Computer", "Gardening"];
 
-  const chunkArray = (arr : string[], size: number) => 
+  const chunkArray = (arr: string[], size: number) =>
     Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
       arr.slice(i * size, i * size + size)
     );
@@ -15,20 +15,20 @@ const Marketplace = () => {
   return (
     <ScrollView style={styles.container}>
       {chunkArray(services, 3).map((row, rowIndex) => (
-      <View key={rowIndex} style={styles.line}>
-        {row.map((service) => {
-          const imageName = `${service.toLowerCase()}Service`;
-          return (
-            <StoreCategory
-              key={service}
-              title={service}
-              route={service}
-              src={images[imageName as keyof typeof images]}
-            />
-          );
-        })}
-      </View>
-    ))}
+        <View key={rowIndex} style={styles.line}>
+          {row.map((service) => {
+            const imageName = `${service.toLowerCase()}Service`;
+            return (
+              <StoreCategory
+                key={service}
+                title={service}
+                route={service}
+                src={images[imageName as keyof typeof images]}
+              />
+            );
+          })}
+        </View>
+      ))}
     </ScrollView>
   );
 };
