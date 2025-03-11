@@ -7,7 +7,7 @@ const RateButton = () => {
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={() => {}} >
         <View>
-          <Text style={styles.text}>Rate</Text>
+          <Text style={styles.text}>Rate Service</Text>
         </View>
       </Pressable>
     </View>
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   button: {
-    borderRadius:"30%",
+    borderRadius:"25%",
     paddingHorizontal:15,
     paddingVertical:10,
     margin: "auto",
@@ -30,10 +30,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.SELECTED_PRIMARY,
   },
   text: {
-    fontSize: 20,
+    fontSize: 16,
     color:"white",
     textShadowColor:"black",
-    textShadowRadius:20,
+    textShadowRadius:10,
     textShadowOffset: {width: 4,  height: 4},
     
     fontWeight: "bold",
