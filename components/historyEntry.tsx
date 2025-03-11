@@ -14,27 +14,24 @@ export interface HistoryEntryProps {
 }
 
 const HistoryEntry = (props: HistoryEntryProps) => {
+  const fullDate = `${props.date.getDate()}/${props.date.getUTCMonth()}/${props.date.getFullYear()}`;
   return (
     <View style={styles.container}>
       <View style={styles.line}>
         <Text style={styles.text}>Order ID: {props.id}</Text>
-        <Text style={[styles.text, styles.time]}>
-          {props.date.getHours() + ":" + props.date.getMinutes()}
-        </Text>
+
         <Text style={styles.text}>Service Type: {props.serviceType}</Text>
       </View>
       <View style={styles.line}>
-        <Text style={styles.text}>Provider: {props.provider} </Text>
-
-        <Text
-          style={[styles.text, styles.time, { marginLeft: 15 }]}
-        >
-          {props.date.getDate() +
-            "/" +
-            props.date.getUTCMonth() +
-            "/" +
-            props.date.getFullYear()}
+        <Text style={styles.text}>
+          {fullDate}
         </Text>
+        <Text style={[styles.text, {textAlign:"center"}]}>
+          {`${props.date.getHours()}:${props.date.getMinutes()}`}
+        </Text>
+      </View>
+      <View style={styles.line}>
+        <Text style={styles.text}>Provider: {props.provider} </Text>
 
         {props.rated && (
           <View style={styles.ratingContainer}>
@@ -73,10 +70,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     flex: 1,
   },
-  time: {flex:0.75},
+  time: { flex: 1 },
   ratingContainer: {
     flexDirection: "row",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     marginVertical: "auto",
     flex: 1,
   },
