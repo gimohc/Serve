@@ -1,5 +1,6 @@
 export const colors = { 
     SELECTED_PRIMARY: '#26f',
+    DARKER_SELECTED: '#15d',
     UNSELECTED_PRIMARY: '#57f',
     UNSELECTED_TEXT_COLOR: '#B0B0B0',
     WHITE: '#FFF',

@@ -23,10 +23,8 @@ const HistoryEntry = (props: HistoryEntryProps) => {
         <Text style={styles.text}>Service Type: {props.serviceType}</Text>
       </View>
       <View style={styles.line}>
-        <Text style={styles.text}>
-          {fullDate}
-        </Text>
-        <Text style={[styles.text, {textAlign:"center"}]}>
+        <Text style={styles.text}>{fullDate}</Text>
+        <Text style={[styles.text, { textAlign: "center" }]}>
           {`${props.date.getHours()}:${props.date.getMinutes()}`}
         </Text>
       </View>
