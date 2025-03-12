@@ -1,7 +1,7 @@
 import { Text, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 
-export default function ItemDetail() {
+export default function MarketDetail() {
   const { id } = useLocalSearchParams();
 
   return (
