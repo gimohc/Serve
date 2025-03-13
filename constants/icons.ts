@@ -10,5 +10,7 @@ export const images = {
     gardeningService: require("../assets/images/forest-tree-icon.png"),
     cleaningService: require("../assets/images/housekeeping-icon.png"),
     star: require("../assets/images/star-icon.png"),
-    emptyStar: require("../assets/images/black-star-icon.png")
+    emptyStar: require("../assets/images/black-star-icon.png"),
+    expand: require("../assets/images/plus-round-line-icon.png"),
+    shrink: require("../assets/images/minus-round-line-icon.png"),
 } 

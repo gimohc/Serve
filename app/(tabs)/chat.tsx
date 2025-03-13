@@ -1,14 +1,63 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, Image, View, Pressable } from "react-native";
+import React, { useState } from "react";
+import ChatArea from "@/components/chatArea";
+import ChatUsersList from "@/components/chatUsersList";
+import { images } from "@/constants/icons";
+import { user } from "@/components/chatUser";
+import ToggleUsersList from "@/components/toggleUsersList";
+
+const users: user[] = [
+  { apiID: "1", name: "Store 1" },
+  { apiID: "2", name: "Store 2" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+  { apiID: "3", name: "Store 3" },
+];
 
 const Chat = () => {
+  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [chatsHidden, setChatsHidden] = useState<boolean>(false);
+
   return (
-    <View>
-      <Text>chat</Text>
+    <View style={styles.container}>
+      <View style={styles.sideList }>
+        <ToggleUsersList setChatsHidden={setChatsHidden} chatsHidden={chatsHidden}/>
+        <ChatUsersList
+          users={users}
+          activeIndex={activeIndex}
+          chatsHidden={chatsHidden}
+          setActiveIndex={setActiveIndex}
+        />
+      </View>
+      <ChatArea />
     </View>
-  )
-}
+  );
+};
 
-export default Chat
+export default Chat;
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    height: "100%",
+  },
+  sideList: {
+   // width:"30%",
+
+  }
+  
+});
