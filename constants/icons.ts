@@ -13,4 +13,5 @@ export const images = {
     emptyStar: require("../assets/images/black-star-icon.png"),
     expand: require("../assets/images/plus-round-line-icon.png"),
     shrink: require("../assets/images/minus-round-line-icon.png"),
+    attachment: require("../assets/images/attachment-pin-icon.png"),
 } 

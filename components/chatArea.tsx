@@ -1,19 +1,26 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import React from "react";
+import { colors } from "@/constants/colors";
+import MessageInputForm from "./messageInputForm";
 
 const ChatArea = () => {
   return (
-    <ScrollView style={styles.container}>
-      <Text>ChatArea</Text>
-    </ScrollView>
-  )
-}
+    <View style={styles.container}>
+      <ScrollView>
+        <Text>ChatArea</Text>
+      </ScrollView>
+      <MessageInputForm/>
+    </View>
+  );
+};
 
-export default ChatArea
+export default ChatArea;
 
 const styles = StyleSheet.create({
-    container: {
-        paddingTop:40,
-        backgroundColor:"#00f"
-    },
-})
+  container: {
+    overflow:"scroll",
+    width:"100%",
+    paddingTop: 40,
+    backgroundColor: colors.LIGHT_GRAY,
+  },
+});

@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   sideList: {
-   // width:"30%",
 
   }
   
