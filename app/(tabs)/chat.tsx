@@ -2,7 +2,6 @@ import { StyleSheet, Image, View, Pressable } from "react-native";
 import React, { useState } from "react";
 import ChatArea from "@/components/chatArea";
 import ChatUsersList from "@/components/chatUsersList";
-import { images } from "@/constants/icons";
 import { user } from "@/components/chatUser";
 import ToggleUsersList from "@/components/toggleUsersList";
 
@@ -34,8 +33,11 @@ const Chat = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.sideList }>
-        <ToggleUsersList setChatsHidden={setChatsHidden} chatsHidden={chatsHidden}/>
+      <View>
+        <ToggleUsersList
+          setChatsHidden={setChatsHidden}
+          chatsHidden={chatsHidden}
+        />
         <ChatUsersList
           users={users}
           activeIndex={activeIndex}
@@ -52,11 +54,8 @@ export default Chat;
 
 const styles = StyleSheet.create({
   container: {
+    position: "relative",
     flexDirection: "row",
     height: "100%",
   },
-  sideList: {
-
-  }
-  
 });

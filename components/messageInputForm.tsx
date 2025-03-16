@@ -8,18 +8,28 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { images } from "@/constants/icons";
+import { colors } from "@/constants/colors";
 
 const MessageInputForm = () => {
   const [message, setMessage] = useState<string>("");
-
+  let messageIsEmpty = false;
+  if (message.trim() == "") messageIsEmpty = true;
   return (
     <View style={styles.container}>
       <Pressable style={styles.attachmentButton}>
         <Image source={images.attachment} style={styles.attachmentIcon} />
       </Pressable>
-      <TextInput style={styles.messageInput} placeholder="Message" />
-      <Pressable style={styles.sendButton}>
-        <Text> Send </Text>
+      <TextInput
+        style={styles.messageInput}
+        placeholder="Message"
+        multiline={true}
+        value={message}
+        onChangeText={setMessage}
+      />
+
+      <Pressable disabled={messageIsEmpty} style={[styles.sendButton, !messageIsEmpty && {
+    backgroundColor: colors.DARKER_SELECTED}]}>
+        {!messageIsEmpty && <Text style={styles.sendText}> Send </Text>}
       </Pressable>
     </View>
   );
@@ -30,31 +40,36 @@ export default MessageInputForm;
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    marginHorizontal: 30,
+    margin: "auto",
+    paddingHorizontal: 20,
+    marginBottom: 5,
   },
   attachmentButton: {
-    backgroundColor:"#f00",
-    flex: 1,
-    justifyContent:"center",
-    borderRadius:"50%"
+    backgroundColor: colors.UNSELECTED_PRIMARY,
+    flex: 1.5,
+    justifyContent: "center",
+    borderRadius: "50%",
   },
   attachmentIcon: {
-    width: 24, 
+    width: 24,
     height: 24,
-    margin:"auto"
+    margin: "auto",
   },
   messageInput: {
-    marginLeft:8,
-    backgroundColor: "#f0f",
+    borderWidth: 1,
+    borderRightWidth: 0,
+    marginLeft: 8,
+    paddingLeft: 10,
     flex: 7,
-    borderTopLeftRadius:20,
-    borderBottomLeftRadius:20,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
   },
   sendButton: {
-    backgroundColor: "#ff0",
+    borderWidth: 1,
+    borderLeftWidth: 0,
     justifyContent: "center",
-    borderTopRightRadius:20,
-    borderBottomRightRadius:20,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
     flex: 2,
   },
   sendText: { textAlign: "center" },

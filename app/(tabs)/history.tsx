@@ -9,7 +9,7 @@ const historyEntries: HistoryEntryProps[] = [
     serviceType: "Cleaning",
     provider: "Store 1",
     rating: 0,
-    rated:true,
+    rated: true,
   },
   {
     id: "2",
@@ -17,7 +17,7 @@ const historyEntries: HistoryEntryProps[] = [
     serviceType: "Cleaning",
     provider: "Store 2",
     rating: 1,
-    rated:false,
+    rated: false,
   },
   {
     id: "3",
@@ -25,7 +25,7 @@ const historyEntries: HistoryEntryProps[] = [
     serviceType: "Cleaning",
     provider: "Store 3",
     rating: 4,
-    rated:true,
+    rated: true,
   },
   {
     id: "4",
@@ -33,7 +33,7 @@ const historyEntries: HistoryEntryProps[] = [
     serviceType: "Cleaning",
     provider: "Store 3",
     rating: 4,
-    rated:false,
+    rated: false,
   },
   {
     id: "5",
@@ -41,7 +41,7 @@ const historyEntries: HistoryEntryProps[] = [
     serviceType: "Cleaning",
     provider: "Store 3",
     rating: 5,
-    rated:true,
+    rated: true,
   },
   {
     id: "6",
@@ -49,7 +49,7 @@ const historyEntries: HistoryEntryProps[] = [
     serviceType: "Cleaning",
     provider: "Store 3",
     rating: 1,
-    rated:true,
+    rated: true,
   },
   {
     id: "7",
@@ -57,14 +57,14 @@ const historyEntries: HistoryEntryProps[] = [
     serviceType: "Cleaning",
     provider: "Store 3",
     rating: 4,
-    rated:false,
+    rated: false,
   },
 ];
 const History = () => {
   return (
     <ScrollView style={styles.container}>
       {historyEntries.map((entry) => {
-        return <HistoryEntry key={"Service" + entry.id} {...entry}/>;
+        return <HistoryEntry key={"Service" + entry.id} {...entry} />;
       })}
     </ScrollView>
   );
