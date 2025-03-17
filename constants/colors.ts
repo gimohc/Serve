@@ -6,5 +6,8 @@ export const colors = {
     WHITE: '#FFF',
     LIGHT_GRAY: '#CCC',
     DARK_GRAY: '#333',
-    MID_GRAY: '#777'
+    MID_GRAY: '#777',
+    DARK_MAGENTA: '#808',
+    DARK_CYAN: '#078',
+    GREEN: '#108030',
 }

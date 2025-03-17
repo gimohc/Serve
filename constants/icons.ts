@@ -3,6 +3,7 @@ export const images = {
     marketplace: require("../assets/images/shop-icon.png"),
     chat: require("../assets/images/message-icon.png"),
     logo: require("../assets/images/placeholder.png"),
+    placeholder: require("../assets/images/placeholder.png"),
     profile: require("../assets/images/profile-icon.png"),
     support: require("../assets/images/headphone-icon.png"),
     carService: require("../assets/images/car-repair-service-icon.png"),

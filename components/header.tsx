@@ -8,7 +8,7 @@ const Header = () => {
       <View style={styles.container}>
         <Image source={images.logo} style={styles.logo} />
 
-        <Text style={styles.title}>Placeholder</Text>
+        <Text style={styles.title}> Service Companion </Text>
         <View style={styles.profileContainer}>
           <Image source={images.profile} style={styles.profileIcon} />
         </View>
