@@ -1,18 +1,22 @@
-import { StyleSheet, Text, View, Image } from "react-native";
-import React from "react";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import React, { useState } from "react";
 import { images } from "@/constants/icons";
+import ProfileOptions from "./profileOptions";
 
 const Header = () => {
-  return (
-    <View style={styles.header}>
-      <View style={styles.container}>
-        <Image source={images.logo} style={styles.logo} />
+  const [optionsShown, setOptionsShown] = useState<boolean>(false);
 
-        <Text style={styles.title}> Service Companion </Text>
-        <View style={styles.profileContainer}>
-          <Image source={images.profile} style={styles.profileIcon} />
-        </View>
-      </View>
+  return (
+    <View style={styles.container}>
+      <Image source={images.logo} style={styles.logo} />
+      <Text style={styles.title}> Service Companion </Text>
+      <Pressable
+        style={styles.profileContainer}
+        onPress={() => setOptionsShown((b) => !b)}
+      >
+        <Image source={images.profile} style={styles.profileIcon} />
+      </Pressable>
+      {optionsShown && <ProfileOptions/>}
     </View>
   );
 };
@@ -20,11 +24,9 @@ const Header = () => {
 export default Header;
 
 const styles = StyleSheet.create({
-  header: {
+  container: {
     width: "100%",
     height: 60,
-  },
-  container: {
     flexDirection: "row",
     alignItems: "center",
     marginVertical: "auto",

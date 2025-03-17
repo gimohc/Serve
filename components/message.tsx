@@ -8,9 +8,9 @@ export interface message {
   message: string;
   storeSent: boolean;
 }
-const Message = (messageProps : message, index : number) => {
+const Message = (messageProps : message) => {
   return (
-    <View key={"Message" + messageProps.receiverAPI + index} style={[styles.container, messageProps.storeSent && styles.storeSent]}>
+    <View  style={[styles.container, messageProps.storeSent && styles.storeSent]}>
       <Text style={styles.messageText}> {messageProps.message} </Text>
     </View>
   );

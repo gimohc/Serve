@@ -4,8 +4,7 @@ import { colors } from "@/constants/colors";
 import MessageInputForm from "./messageInputForm";
 import Message, { message } from "./message";
 
-// depending on the sender either flexdirection: normal or row reverse
-
+// messages list is placeholder to retrieve data from api
 const messages: message[] = [
   {
     userID: "test",
@@ -20,8 +19,8 @@ const ChatArea = () => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.messagesContainer}>
-        {messages.map((message: message) => {
-          return <Message {...message} />;
+        {messages.map((message: message, index: number) => {
+          return <Message key={"Message" + message.receiverAPI + index} {...message} />;
         })}
       </ScrollView>
       <MessageInputForm />
