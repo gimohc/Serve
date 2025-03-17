@@ -8,9 +8,9 @@ export interface message {
   message: string;
   storeSent: boolean;
 }
-const Message = (messageProps : message) => {
+const Message = (messageProps : message, index : number) => {
   return (
-    <View style={[styles.container, messageProps.storeSent && styles.storeSent]}>
+    <View key={"Message" + messageProps.receiverAPI + index} style={[styles.container, messageProps.storeSent && styles.storeSent]}>
       <Text style={styles.messageText}> {messageProps.message} </Text>
     </View>
   );
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     backgroundColor:colors.DARKER_SELECTED,
     marginTop:5,
     padding:5,
-    maxWidth:"80%",
+    maxWidth:"70%",
     alignSelf:"flex-start",
   },
   storeSent: {

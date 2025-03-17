@@ -46,9 +46,9 @@ const styles = StyleSheet.create({
   },
   attachmentButton: {
     backgroundColor: colors.UNSELECTED_PRIMARY,
-    flex: 1.5,
     justifyContent: "center",
     borderRadius: "50%",
+    width:40,
   },
   attachmentIcon: {
     width: 24,
