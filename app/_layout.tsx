@@ -16,7 +16,7 @@ export default function RootLayout() {
     <>
       <StatusBar backgroundColor={colors.UNSELECTED_PRIMARY}/>
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
+        <Stack.Screen name="(root)/index" />
         <Stack.Screen name="(tabs)" />
       </Stack>
     </>

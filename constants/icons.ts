@@ -15,4 +15,7 @@ export const images = {
     expand: require("../assets/images/plus-round-line-icon.png"),
     shrink: require("../assets/images/minus-round-line-icon.png"),
     attachment: require("../assets/images/attachment-pin-icon.png"),
+    login: require("../assets/images/login-icon.png"),
+    register: require("../assets/images/sign-up-icon.jpg"),
+    backArrow: require("../assets/images/arrow-left-icon.png"),
 } 

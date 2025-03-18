@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React, { useState } from "react";
 import { images } from "@/constants/icons";
-import ProfileOptions from "./profileOptions";
+import { router } from "expo-router";
 
 const Header = () => {
-  const [optionsShown, setOptionsShown] = useState<boolean>(false);
+  //const [optionsShown, setOptionsShown] = useState<boolean>(false);
 
   return (
     <View style={styles.container}>
@@ -12,11 +12,13 @@ const Header = () => {
       <Text style={styles.title}> Service Companion </Text>
       <Pressable
         style={styles.profileContainer}
-        onPress={() => setOptionsShown((b) => !b)}
+        onPress={() => {router.replace('/(root)/profileOptions')}}
+        //onPress={() => setOptionsShown((b) => !b)}
       >
         <Image source={images.profile} style={styles.profileIcon} />
       </Pressable>
-      {optionsShown && <ProfileOptions/>}
+      {//optionsShown && <ProfileOptions/>
+      }
     </View>
   );
 };
