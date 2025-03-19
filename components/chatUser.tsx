@@ -2,19 +2,18 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { Dispatch, SetStateAction } from "react";
 import { colors } from "@/constants/colors";
 
-export interface user {
+export interface chatUser {
   apiID: string;
   name: string;
 }
 interface chatUserProps {
-  user: user;
+  user: chatUser;
   index: number;
   activeIndex: number;
   setActiveIndex: Dispatch<SetStateAction<number>>;
 }
 const ChatUser = ({
   index,
-  user,
   activeIndex,
   setActiveIndex,
 }: chatUserProps) => {

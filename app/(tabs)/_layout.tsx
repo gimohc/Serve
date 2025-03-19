@@ -32,14 +32,7 @@ const TabsLayout = () => {
             ),
           }}
         />
-        <Tabs.Screen
-          name="history"
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <TabBarIcon source={images.history} focused={focused} />
-            ),
-          }}
-        />
+        
         <Tabs.Screen
           name="chat"
           options={{

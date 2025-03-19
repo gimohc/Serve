@@ -5,7 +5,6 @@ export const images = {
     logo: require("../assets/images/placeholder.png"),
     placeholder: require("../assets/images/placeholder.png"),
     profile: require("../assets/images/profile-icon.png"),
-    support: require("../assets/images/headphone-icon.png"),
     carService: require("../assets/images/car-repair-service-icon.png"),
     computerService: require("../assets/images/computer-icon.png"),
     gardeningService: require("../assets/images/forest-tree-icon.png"),
@@ -18,4 +17,8 @@ export const images = {
     login: require("../assets/images/login-icon.png"),
     register: require("../assets/images/sign-up-icon.jpg"),
     backArrow: require("../assets/images/arrow-left-icon.png"),
+    address: require("../assets/images/address-location-icon.png"),
+    support: require("../assets/images/headphone-headset-icon.png"),
+    information: require("../assets/images/info-circle-icon.png"),
+    logout: require("../assets/images/logout-line-icon.png"),
 } 

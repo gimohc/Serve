@@ -26,7 +26,6 @@ const Marketplace = () => {
                 route={service}
                 src={imageSource == null? images.placeholder : imageSource}
                 style={serviceColors.length >= index+1? {backgroundColor: serviceColors[index + 3 * rowIndex] } : {}}
-                // style={{backgroundColor: serviceColors[index + 3 * rowIndex] }}
               />
             );
           })}

@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     left: 0,
+    zIndex:1,
   },
   image: {
     marginLeft: 5,

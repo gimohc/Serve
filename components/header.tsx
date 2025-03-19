@@ -4,7 +4,6 @@ import { images } from "@/constants/icons";
 import { router } from "expo-router";
 
 const Header = () => {
-  //const [optionsShown, setOptionsShown] = useState<boolean>(false);
 
   return (
     <View style={styles.container}>
@@ -12,13 +11,10 @@ const Header = () => {
       <Text style={styles.title}> Service Companion </Text>
       <Pressable
         style={styles.profileContainer}
-        onPress={() => {router.replace('/(root)/profileOptions')}}
-        //onPress={() => setOptionsShown((b) => !b)}
+        onPress={() => {router.replace('/(profile)/profileOptions')}}
       >
         <Image source={images.profile} style={styles.profileIcon} />
       </Pressable>
-      {//optionsShown && <ProfileOptions/>
-      }
     </View>
   );
 };
