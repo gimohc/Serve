@@ -27,8 +27,15 @@ const MessageInputForm = () => {
         onChangeText={setMessage}
       />
 
-      <Pressable disabled={messageIsEmpty} style={[styles.sendButton, !messageIsEmpty && {
-    backgroundColor: colors.DARKER_PRIMARY}]}>
+      <Pressable
+        disabled={messageIsEmpty}
+        style={[
+          styles.sendButton,
+          !messageIsEmpty && {
+            backgroundColor: colors.DARKER_PRIMARY,
+          },
+        ]}
+      >
         {!messageIsEmpty && <Text style={styles.sendText}> Send </Text>}
       </Pressable>
     </View>
@@ -42,13 +49,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     margin: "auto",
     paddingHorizontal: 20,
-    marginBottom: 5,
+    marginBottom: 10,
   },
   attachmentButton: {
     backgroundColor: colors.LIGHTER_PRIMARY,
     justifyContent: "center",
     borderRadius: "50%",
-    width:40,
+    width: 40,
   },
   attachmentIcon: {
     width: 24,

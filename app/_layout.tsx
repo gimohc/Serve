@@ -5,14 +5,31 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { useState } from "react";
 import { StatusBar } from "react-native";
+import { serviceProviderName } from "./(tabs)/chat";
 
 export interface user {
   fullName: string;
   phoneNumber: string;
+  email: string | null;
+  birthday: string | null;
+  gender: boolean;
+  addresses: string[] | null;
+}
+export interface serviceProvider extends serviceProviderName {
+  type: string;
+  subTypes: string[];
   email: string;
+  phoneNumber: string;
 }
 export default function RootLayout() {
-  const [user, setUser] = useState<user | null>({ fullName: "motasem", phoneNumber:"+962000000000", email:"test@email.com"});
+  const [user, setUser] = useState<user | null>({
+    fullName: "motasem",
+    phoneNumber: "+962000000000",
+    email: "test@email.com",
+    birthday: null,
+    gender: true,
+    addresses: null,
+  });
 
   const [loaded] = useFonts({
     Pluvix: fonts.pluvix,
@@ -37,4 +54,4 @@ export default function RootLayout() {
   );
 }
 
-// { fullName: "motasem", phoneNumber:"+962000000000", email:"test@email.com"}
+// { fullName: "motasem", phoneNumber:"+962000000000", email:"test@email.com", birthday:null, gender:true, addresses:null}

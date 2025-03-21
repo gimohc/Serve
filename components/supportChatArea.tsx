@@ -3,18 +3,17 @@ import React from "react";
 import { colors } from "@/constants/colors";
 import MessageInputForm from "./messageInputForm";
 import Message, { message } from "./message";
-
-// messages list is placeholder to retrieve data from api
+import { supportMessage } from "@/app/(profile)/support";
 
 export interface chatAreaProps {
-    messages: message[]
+    messages: supportMessage[];
 }
-const ChatArea = ({messages} : chatAreaProps) => {
+const SupportChatArea = ( { messages } : chatAreaProps) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.messagesContainer}>
-        {messages.map((message: message) => {
-          return <Message key={"Message" + message.id} message={message.message} source={message.source} />;
+        {messages.map((message: supportMessage) => {
+          return <Message key={"Message" + message.id} source={message.source} message={message.message} />;
         })}
       </ScrollView>
       <MessageInputForm />
@@ -22,7 +21,7 @@ const ChatArea = ({messages} : chatAreaProps) => {
   );
 };
 
-export default ChatArea;
+export default SupportChatArea;
 
 const styles = StyleSheet.create({
   container: {
