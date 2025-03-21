@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { colors } from "@/constants/colors";
 
 const RateButton = () => {
-  const [bgColor, setBgColor] = useState(colors.DARKER_SELECTED);
+  const [bgColor, setBgColor] = useState(colors.DARKER_PRIMARY);
   return (
     <View style={styles.container}>
       <Pressable
@@ -12,7 +12,7 @@ const RateButton = () => {
           setBgColor(colors.SELECTED_PRIMARY);
         }}
         onPressOut={() => {
-          setBgColor(colors.DARKER_SELECTED);
+          setBgColor(colors.DARKER_PRIMARY);
         }}
         onPress={() => {}}
       >

@@ -15,7 +15,7 @@ const TabsLayout = () => {
           headerShown: false,
           tabBarStyle: styles.container,
           tabBarActiveBackgroundColor: colors.SELECTED_PRIMARY,
-          tabBarInactiveBackgroundColor: colors.UNSELECTED_PRIMARY,
+          tabBarInactiveBackgroundColor: colors.LIGHTER_PRIMARY,
 
           tabBarLabel: () => (
             <Text style={styles.tabBarLabel}>

@@ -3,7 +3,7 @@ import { fonts } from "@/constants/fonts";
 import { AuthContext } from "@/contexts/authContext";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { StatusBar } from "react-native";
 
 export interface user {
@@ -28,7 +28,7 @@ export default function RootLayout() {
   };
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
-      <StatusBar backgroundColor={colors.UNSELECTED_PRIMARY} />
+      <StatusBar backgroundColor={colors.SELECTED_PRIMARY} />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(root)/index" />
         <Stack.Screen name="(tabs)" />

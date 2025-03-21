@@ -45,7 +45,7 @@ const ProfileOptions = () => {
             source={images.history}
             seperator
             text="Order History"
-            route="./history"
+            route="/(services)/history"
           />
           <ProfileOption
             source={images.address}
@@ -62,7 +62,7 @@ const ProfileOptions = () => {
               user.logout;
             }}
           />
-          <Text style={styles.heading}> Support </Text>
+          <Text style={[styles.heading, {marginTop:30}]}> Support </Text>
 
           <ProfileOption
             source={images.support}

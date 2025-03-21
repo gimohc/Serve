@@ -33,11 +33,11 @@ function Login() {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "50%",
+    height: "100%",
     margin: "auto",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.SELECTED_PRIMARY,
+    backgroundColor: colors.LIGHTER_PRIMARY,
   },
   button: {
     width: "25%",

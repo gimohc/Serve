@@ -1,10 +1,12 @@
 import CustomButton from "@/components/button";
+import DateInput from "@/components/dateInput";
 import Input from "@/components/input";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import PressableText from "@/components/pressableText";
 import { colors } from "@/constants/colors";
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
+import { DateType } from "react-native-ui-datepicker";
 
 function Register() {
   const [fullName, setFullName] = useState<string>("");
@@ -12,6 +14,8 @@ function Register() {
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
+  const [birthday, setBirthday] = useState<DateType>();
+  
 
   return (
     <>
@@ -24,6 +28,8 @@ function Register() {
           setValue={setPhoneNumber}
         />
         <Input title="Email Address" value={email} setValue={setEmail} />
+
+        <DateInput title="Birthday" value={birthday} setValue={setBirthday} />
         <Input title="Password" value={password} setValue={setPassword} />
         <Input
           title="Confirm Password"
@@ -44,15 +50,21 @@ function Register() {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: "50%",
+    height: "100%",
     margin: "auto",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: colors.SELECTED_PRIMARY,
+    backgroundColor:colors.LIGHTEST_PRIMARY,
   },
   button: {
     width: "25%",
     backgroundColor: colors.DARK_GRAY,
+  },
+  row: {
+    flexDirection: "row",
+  },
+  calendar: {
+    position: "absolute",
   },
 });
 export default Register;

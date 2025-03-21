@@ -2,14 +2,10 @@ import {
   Pressable,
   StyleSheet,
   Text,
-  View,
-  ViewStyle,
-  Image,
   ImageBackground,
   ImageSourcePropType,
 } from "react-native";
 import React from "react";
-import { images } from "@/constants/icons";
 import { router } from "expo-router";
 import { colors } from "@/constants/colors";
 
@@ -36,7 +32,7 @@ export default SigningOption;
 const styles = StyleSheet.create({
   container: {
     borderRadius:15,
-    backgroundColor:colors.DARKER_SELECTED,
+    backgroundColor:colors.DARKER_PRIMARY,
     margin:50,
     padding:15,
     borderWidth:2,

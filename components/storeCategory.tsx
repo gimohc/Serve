@@ -16,19 +16,28 @@ interface StoreCategoryProps {
   route: string;
   src: ImageSourcePropType;
   style?: ViewStyle;
+  disabled?: true;
 }
-const StoreCategory = ({ title, route, style, src }: StoreCategoryProps) => {
+const StoreCategory = ({
+  title,
+  route,
+  style,
+  src,
+  disabled,
+}: StoreCategoryProps) => {
+
   return (
     <Pressable
+      disabled={disabled}
       style={[styles.container, style]}
       onPress={() => {
-        router.replace(`/${route}`);
+        router.navigate(`../${route}`);
       }}
     >
       <View style={styles.components}>
         <Image source={src} style={styles.icon} />
 
-        <Text style={styles.text}> {title + "\n"} Services </Text>
+        <Text style={styles.text}> {title} </Text>
       </View>
     </Pressable>
   );
@@ -41,7 +50,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.MID_GRAY,
     padding: 10,
     margin: 5,
-    width: "31%",
+    flex: 1,
     height: "auto",
     borderRadius: "10%",
   },
@@ -57,6 +66,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     color: "white",
-    marginTop:-5,
+    marginTop: -5,
   },
 });

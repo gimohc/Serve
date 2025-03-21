@@ -17,7 +17,7 @@ const ProfileOption = ({ text, onPress, route, color, source, seperator }: Profi
     <>
     <Pressable style={styles.container} onPress={() => {
       onPress;
-      router.navigate(`/${route}`)
+      router.replace(`../${route}`)
     }}>
       <Image source={source} style={[styles.icon, { tintColor: color }]} />
       <Text style={[styles.text, {color:color}]}> {text} </Text>

@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
         position:"absolute",
         top:1,
         right:1,
-        backgroundColor:colors.UNSELECTED_PRIMARY,
+        backgroundColor:colors.LIGHTER_PRIMARY,
         zIndex:1,
         borderRadius:20,
         padding:15,

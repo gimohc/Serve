@@ -1,8 +1,9 @@
 export const colors = { 
     SELECTED_PRIMARY: '#26f',
-    DARKER_SELECTED: '#15d',
-    UNSELECTED_PRIMARY: '#57f',
-    UNSELECTED_TEXT_COLOR: '#B0B0B0',
+    DARKER_PRIMARY: '#15d',
+    LIGHTER_PRIMARY: '#57f',
+    DARKEST_PRIMARY: '#015',
+    LIGHTEST_PRIMARY: '#88f',
     WHITE: '#FFF',
     LIGHT_GRAY: '#CCC',
     DARK_GRAY: '#333',
