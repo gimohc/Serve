@@ -1,8 +1,14 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { colors } from "@/constants/colors";
+import { router } from "expo-router";
 
-const RateButton = () => {
+interface RateButtonProps {
+  orderID: string;
+}
+
+
+const RateButton = ({ orderID } : RateButtonProps) => {
   const [bgColor, setBgColor] = useState(colors.DARKER_PRIMARY);
   return (
     <View style={styles.container}>
@@ -14,7 +20,7 @@ const RateButton = () => {
         onPressOut={() => {
           setBgColor(colors.DARKER_PRIMARY);
         }}
-        onPress={() => {}}
+        onPress={() => { router.replace(`./rating/${orderID}`)}}
       >
         <View>
           <Text style={styles.text}>Rate Service</Text>

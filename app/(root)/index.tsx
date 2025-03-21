@@ -27,6 +27,9 @@ export default function Index() {
   );
 }
 
+// https://reactnative.dev/docs/textinput
+// for reference need to use inputmode 
+
 /*
   10s -> cleaning services
   20s -> car services

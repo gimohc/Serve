@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import HistoryEntry, { HistoryEntryProps } from "@/components/historyEntry";
 import MainMenuArrow from "@/components/mainMenuArrow";
 
@@ -64,12 +64,11 @@ const historyEntries: HistoryEntryProps[] = [
 const History = () => {
   return (
     <>
-        <MainMenuArrow/>
+      <MainMenuArrow />
       <Text style={styles.headerText}> Order History </Text>
       <ScrollView style={styles.container}>
-      
-        {historyEntries.map((entry) => {
-          return <HistoryEntry key={"Service" + entry.id} {...entry} />;
+        {historyEntries.map((order) => {
+          return <HistoryEntry key={"Service" + order.id} {...order} />;
         })}
       </ScrollView>
     </>
@@ -84,10 +83,10 @@ const styles = StyleSheet.create({
     marginVertical: 7,
   },
   headerText: {
-    borderTopWidth:1,
-    paddingTop:10,
-    marginTop:5,
-    textAlign:"center",
-    fontSize:20,
-  }
+    borderTopWidth: 1,
+    paddingTop: 10,
+    marginTop: 5,
+    textAlign: "center",
+    fontSize: 20,
+  },
 });

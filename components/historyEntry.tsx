@@ -3,6 +3,7 @@ import React from "react";
 import { images } from "@/constants/icons";
 import { colors } from "@/constants/colors";
 import RateButton from "./rateButton";
+import RatingContainer from "./ratingContainer";
 
 export interface HistoryEntryProps {
   id: string;
@@ -11,6 +12,7 @@ export interface HistoryEntryProps {
   provider: string;
   rating: number;
   rated: boolean;
+  feedback?:string;
 }
 
 const HistoryEntry = (props: HistoryEntryProps) => {
@@ -31,18 +33,8 @@ const HistoryEntry = (props: HistoryEntryProps) => {
       <View style={styles.line}>
         <Text style={styles.text}>Provider: {props.provider} </Text>
 
-        {props.rated && (
-          <View style={styles.ratingContainer}>
-            {Array.from({ length: 5 }, (_, index) => (
-              <Image
-                key={"Star" + index}
-                source={index >= props.rating ? images.emptyStar : images.star}
-                style={styles.ratingIcon}
-              />
-            ))}
-          </View>
-        )}
-        {!props.rated && <RateButton />}
+        {props.rated && <RatingContainer style={styles.ratingIcon} rating={props.rating}/>}
+        {!props.rated && <RateButton orderID={`${props.id}-${props.provider}-${props.serviceType}`} />}
       </View>
     </View>
   );
@@ -69,14 +61,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   time: { flex: 1 },
-  ratingContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginVertical: "auto",
-    flex: 1,
-  },
   ratingIcon: {
-    width: 24,
-    height: 24,
+    width: 30,
+    height: 30,
   },
 });
