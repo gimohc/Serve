@@ -1,7 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import React, { useContext } from "react";
 import { images } from "@/constants/icons";
-import SigningOption from "@/components/signingOption";
 import ProfileOption from "@/components/profileOptionEntry";
 import { AuthContext } from "@/contexts/authContext";
 import { colors } from "@/constants/colors";
@@ -14,23 +13,6 @@ const ProfileOptions = () => {
   return (
     <View style={{ height: "100%" }}>
       <MainMenuArrow/>
-      
-      {user.user == null && (
-        <View style={styles.container}>
-          <SigningOption
-            src={images.login}
-            title="Log In"
-            route="(auth)/login"
-          />
-          <SigningOption
-            src={images.register}
-            title="Join Us"
-            route="(auth)/register"
-          />
-        </View>
-      )}
-      {user.user != null && (
-
         <View style={styles.options}>
           <ProfileCard/>
           <SupportButton/>
@@ -71,7 +53,6 @@ const ProfileOptions = () => {
      
           />
         </View>
-      )}
     </View>
   );
 };
