@@ -20,7 +20,7 @@ const DateInput = ({ title, value, setValue }: DateInputProps) => {
       <Pressable onPress={() => setShowCalendar(true)}>
         <Input
           title={title}
-          value={value?.toString()}
+          value={value?.toString().substring(4,15)}
           setValue={setValue}
           disabled
         />

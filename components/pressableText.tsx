@@ -8,7 +8,7 @@ interface PressableTextProps {
 }
 const PressableText = ({ text, route }: PressableTextProps) => {
   return (
-    <Pressable style={styles.container} onPress={() => {router.replace(`/${route}`)}}>
+    <Pressable style={styles.container} onPress={() => {router.replace(`./${route}`)}}>
       <Text style={styles.text}>{text}</Text>
     </Pressable>
   );
@@ -21,10 +21,9 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   text: {
-    color: "white",
     textAlign: "center",
     textDecorationStyle: "solid",
     textDecorationLine: "underline",
-    textDecorationColor: "white",
+    textDecorationColor: "black",
   },
 });

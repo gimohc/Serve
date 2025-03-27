@@ -1,12 +1,14 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import { StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
+import React, { Dispatch, SetStateAction } from "react";
 import { DateType } from "react-native-ui-datepicker";
 
 interface InputProps {
   title: string;
-  value: string | undefined;
-  setValue: Dispatch<SetStateAction<string>> |  Dispatch<SetStateAction<DateType>>;
+  value: string | boolean | undefined ;
+  setValue?: Dispatch<SetStateAction<string>> |  Dispatch<SetStateAction<DateType>> ;
   disabled?: true;
+  style?:ViewStyle;
+  inputStyle?:TextStyle;
   
 }
 export default function Input({
@@ -14,13 +16,15 @@ export default function Input({
   value,
   setValue,
   disabled,
+  style,
+  inputStyle
 }: InputProps) {
   return (
-    <View style={styles.container}>
-      <Text style={[styles.label, styles.text]}>{title}</Text>
+    <View style={[style, styles.container]}>
+      <Text style={[styles.text]}>{title}</Text>
       <TextInput
         readOnly={disabled}
-        style={[styles.input, styles.text]}
+        style={[inputStyle, styles.input, styles.text]}
         value={value?.toString()}
         onChangeText={setValue}
 
@@ -32,24 +36,17 @@ export default function Input({
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
     margin: 5,
     marginRight: 15,
+  
   },
   input: {
-    borderRadius: 20,
+    borderRadius: 15,
     borderWidth: 1,
     padding: 10,
-    backgroundColor:"white"
-  },
-  label: {
-    marginRight: 10,
-    textAlign: "right",
   },
   text: {
-    flex: 1,
+
     fontSize: 16,
     fontWeight: "bold",
   },
