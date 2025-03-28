@@ -18,11 +18,11 @@ const DateInput = ({ title, style, value, setValue }: DateInputProps) => {
   const defaultStyles = useDefaultStyles();
   return (
     <View style={style}>
-      <Pressable onPress={() => setShowCalendar(b => !b)}>
+      <Pressable onPress={() => setShowCalendar((b) => !b)}>
         <Input
           center
           title={title}
-          value={value?value.toString().substring(4,15):"Select Birthday"}
+          value={value ? value.toString().substring(4, 15) : "Select Birthday"}
           setValue={setValue}
           disabled
         />
@@ -32,7 +32,10 @@ const DateInput = ({ title, style, value, setValue }: DateInputProps) => {
           <DateTimePicker
             mode="single"
             date={value}
-            onChange={({ date }) => setValue(date)}
+            onChange={({ date }) => {
+              setValue(date);
+              window.alert(date);
+            }}
             styles={defaultStyles}
           />
           <Pressable
@@ -54,9 +57,9 @@ export default DateInput;
 const styles = StyleSheet.create({
   dateContainer: {
     zIndex: 1,
-    position:"absolute",
+    position: "absolute",
     backgroundColor: "white",
-    width:"auto"
+    width: "auto",
   },
   close: {
     backgroundColor: "red",

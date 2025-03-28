@@ -55,6 +55,7 @@ function ProfileDetails() {
             />
             <Input
               disabled
+              center
               style={styles.rowElement}
               value={findKeyByValue(genders, gender)}
               title="Gender"

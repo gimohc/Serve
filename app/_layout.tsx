@@ -26,7 +26,7 @@ export default function RootLayout() {
     fullName: "motasem",
     phoneNumber: "+962000000000",
     email: "test@email.com",
-    birthday: null,
+    birthday: "Thu Mar 07 2025",
     gender: true,
     addresses: null,
   });
