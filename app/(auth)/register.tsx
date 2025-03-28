@@ -29,12 +29,7 @@ function Register() {
       <MainMenuArrow />
       <Text style={styles.header}> Register </Text>
       <View style={styles.container}>
-        <Input
-          title="Full Name"
-          placeholder="eg. John Doe"
-          value={fullName}
-          setValue={setFullName}
-        />
+        <Input title="Full Name" placeholder="eg. John Doe" value={fullName} setValue={setFullName} />
         <Input
           phone
           title="Phone Number"
@@ -109,10 +104,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    marginHorizontal: "auto",
-    fontSize: 22,
-    paddingTop: 15,
-    fontWeight: "bold",
-  },
+    marginHorizontal:"auto",
+    fontSize:22,
+    paddingTop:15,
+    fontWeight:"bold"
+  }
+  
 });
 export default Register;
