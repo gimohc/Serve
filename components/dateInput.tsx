@@ -22,7 +22,7 @@ const DateInput = ({ title, style, value, setValue }: DateInputProps) => {
         <Input
           center
           title={title}
-          value={value?.toString().substring(4,15)}
+          value={value?value.toString().substring(4,15):"Select Birthday"}
           setValue={setValue}
           disabled
         />

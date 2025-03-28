@@ -21,4 +21,5 @@ export const images = {
     support: require("../assets/images/headphone-headset-icon.png"),
     information: require("../assets/images/info-circle-icon.png"),
     logout: require("../assets/images/logout-line-icon.png"),
+    flag_jo: require("../assets/images/jordan-flag-icon.png"),
 } 

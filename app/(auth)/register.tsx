@@ -29,18 +29,21 @@ function Register() {
       <MainMenuArrow />
       <Text style={styles.header}> Register </Text>
       <View style={styles.container}>
-        <Input title="Full Name" value={fullName} setValue={setFullName} />
+        <Input title="Full Name" placeholder="eg. John Doe" value={fullName} setValue={setFullName} />
         <Input
+          phone
           title="Phone Number"
           value={phoneNumber}
           setValue={setPhoneNumber}
           keyboardType="phone-pad"
+          placeholder="eg. 7XXXXXXXX"
         />
         <Input
           title="Email Address"
           value={email}
           setValue={setEmail}
           keyboardType="email-address"
+          placeholder="johndoe@email.com"
         />
 
         <View style={styles.row}>
@@ -63,12 +66,14 @@ function Register() {
           title="Password"
           value={password}
           setValue={setPassword}
+          placeholder="Password"
         />
         <Input
           title="Confirm Password"
           value={confirmPassword}
           setValue={setConfirmPassword}
           password
+          placeholder="Confirm your Password"
         />
         <CustomButton
           title="Register"

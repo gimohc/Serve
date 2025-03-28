@@ -11,7 +11,6 @@ interface DropDownListProps<T extends boolean | string | null> {
   value: T;
   setValue: Dispatch<SetStateAction<T>>;
 }
-// needs more work
 const DropDownList = <T extends boolean | string | null>({
   items,
   title,
@@ -68,7 +67,7 @@ const styles = StyleSheet.create({
     borderWidth:1,
     marginTop:-5,
     backgroundColor:"white",
-    top:70,
+    top:"100%",
     borderRadius:15,
     alignSelf:"center"
   },
