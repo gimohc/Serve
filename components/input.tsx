@@ -13,10 +13,10 @@ import { images } from "@/constants/icons";
 
 interface InputProps {
   title: string;
-  value: string | boolean | undefined;
+  value: string | boolean | undefined | null;
   setValue?:
     | Dispatch<SetStateAction<string>>
-    | Dispatch<SetStateAction<DateType>>;
+    | Dispatch<SetStateAction<DateType>> | Dispatch<SetStateAction<string | null>>;
   disabled?: true;
   style?: ViewStyle;
   center?: true;
