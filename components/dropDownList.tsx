@@ -1,6 +1,8 @@
 import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import Input from "./input";
+import { colors } from "@/constants/colors";
+import Seperator from "./seperator";
 
 interface DropDownListProps<T extends boolean | string | null> {
   items: { [key: string]: T };
@@ -34,17 +36,18 @@ const DropDownList = <T extends boolean | string | null>({
         <Input title={title} value={findKeyByValue(value)} disabled />
         
       </Pressable>
-      {showOptions && <View style={styles.options}>
+      {showOptions && <View style={styles.optionsContainer}>
           {objectKeys.map((key) => {
-            const dictionaryValue = items[key];
+            const disabled = items[key] == null;
             return (
-              <Pressable disabled={dictionaryValue==null} onPress={() => {
-                setValue(dictionaryValue);
+              <Pressable disabled={disabled} onPress={() => {
+                setValue(items[key]);
                 setShowOptions(false);
                 
 
               }}>
-                <Text> {key} </Text>
+                <Text style={[styles.optionText, disabled && styles.disabled]}> {key} </Text>
+                <Seperator style={{width:"100%"}}/>
               </Pressable>
             );
           })}
@@ -56,8 +59,29 @@ const DropDownList = <T extends boolean | string | null>({
 export default DropDownList;
 
 const styles = StyleSheet.create({
-  container: {},
-  options: {
-    zIndex: 1,
+  container: {
+    
   },
+  optionsContainer: {
+    position:"absolute",
+    zIndex: 1,
+    borderWidth:1,
+    marginTop:-5,
+    backgroundColor:"white",
+    top:70,
+    borderRadius:15,
+  },
+  disabled: {
+    textDecorationLine:"line-through",
+    textDecorationStyle:"solid",
+    textDecorationColor:colors.MID_GRAY,
+    color:colors.MID_GRAY
+  },
+  optionText: {
+    fontSize:15,
+    textAlign:"center",
+    fontWeight:"bold",
+    padding:8,
+
+  }
 });
