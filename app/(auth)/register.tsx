@@ -6,14 +6,14 @@ import MainMenuArrow from "@/components/mainMenuArrow";
 import PressableText from "@/components/pressableText";
 import { colors } from "@/constants/colors";
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { DateType } from "react-native-ui-datepicker";
 
-const genders : { [key:string] : boolean | null } = { 
-  "Male": true,
-  "Female": false,
+const genders: { [key: string]: boolean | null } = {
   "Select Gender": null,
- }
+  Male: true,
+  Female: false,
+};
 
 function Register() {
   const [fullName, setFullName] = useState<string>("");
@@ -23,29 +23,52 @@ function Register() {
   const [email, setEmail] = useState<string>("");
   const [gender, setGender] = useState<boolean | null>(null);
   const [birthday, setBirthday] = useState<DateType>();
-  
 
   return (
     <>
       <MainMenuArrow />
+      <Text style={styles.header}> Register </Text>
       <View style={styles.container}>
         <Input title="Full Name" value={fullName} setValue={setFullName} />
         <Input
           title="Phone Number"
           value={phoneNumber}
           setValue={setPhoneNumber}
+          keyboardType="phone-pad"
         />
-        <Input title="Email Address" value={email} setValue={setEmail} />
+        <Input
+          title="Email Address"
+          value={email}
+          setValue={setEmail}
+          keyboardType="email-address"
+        />
 
         <View style={styles.row}>
-        <DateInput title="Birthday" value={birthday} setValue={setBirthday} />
-        <DropDownList items={genders} title="Gender" value={gender} setValue={setGender} />
+          <DateInput
+            style={styles.rowElement}
+            title="Birthday"
+            value={birthday}
+            setValue={setBirthday}
+          />
+          <DropDownList
+            style={styles.rowElement}
+            items={genders}
+            title="Gender"
+            value={gender}
+            setValue={setGender}
+          />
         </View>
-        <Input title="Password" value={password} setValue={setPassword} />
+        <Input
+          password
+          title="Password"
+          value={password}
+          setValue={setPassword}
+        />
         <Input
           title="Confirm Password"
           value={confirmPassword}
           setValue={setConfirmPassword}
+          password
         />
         <CustomButton
           title="Register"
@@ -62,19 +85,25 @@ const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
-    marginTop:60,
-    padding:20,
+    marginTop: 60,
+    padding: 20,
   },
   button: {
     width: "25%",
     backgroundColor: colors.DARK_GRAY,
   },
   row: {
-    flexDirection:"row",
+    flexDirection: "row",
   },
-  // make calendar take whole page, make the page background go gray to focus on it
-  calendar: {
-    position: "absolute",
+  rowElement: {
+    flex: 1,
   },
+  header: {
+    marginHorizontal:"auto",
+    fontSize:22,
+    paddingTop:15,
+    fontWeight:"bold"
+  }
+  
 });
 export default Register;

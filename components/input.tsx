@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
+import { KeyboardTypeOptions, StyleSheet, Text, TextInput, TextStyle, View, ViewStyle } from "react-native";
 import React, { Dispatch, SetStateAction } from "react";
 import { DateType } from "react-native-ui-datepicker";
 
@@ -8,7 +8,9 @@ interface InputProps {
   setValue?: Dispatch<SetStateAction<string>> |  Dispatch<SetStateAction<DateType>> ;
   disabled?: true;
   style?:ViewStyle;
-  inputStyle?:TextStyle;
+  center?:true;
+  keyboardType?:KeyboardTypeOptions;
+  password?:true;
   
 }
 export default function Input({
@@ -17,16 +19,20 @@ export default function Input({
   setValue,
   disabled,
   style,
-  inputStyle
+  center,
+  keyboardType,
+  password
 }: InputProps) {
   return (
     <View style={[style, styles.container]}>
       <Text style={[styles.text]}>{title}</Text>
       <TextInput
         readOnly={disabled}
-        style={[inputStyle, styles.input, styles.text]}
+        style={[center && { textAlign:"center" }, styles.input, styles.text]}
         value={value?.toString()}
         onChangeText={setValue}
+        keyboardType={keyboardType}
+        secureTextEntry={password}
 
       />
       
@@ -46,7 +52,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   text: {
-
+    paddingLeft:10,
     fontSize: 16,
     fontWeight: "bold",
   },

@@ -33,7 +33,7 @@ const DropDownList = <T extends boolean | string | null>({
           setShowOptions((b) => !b);
         }}
       >
-        <Input title={title} value={findKeyByValue(value)} disabled />
+        <Input center title={title} value={findKeyByValue(value)} disabled />
         
       </Pressable>
       {showOptions && <View style={styles.optionsContainer}>
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     backgroundColor:"white",
     top:70,
     borderRadius:15,
+    alignSelf:"center"
   },
   disabled: {
     textDecorationLine:"line-through",
