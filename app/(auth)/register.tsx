@@ -36,7 +36,7 @@ function Register() {
           value={phoneNumber}
           setValue={setPhoneNumber}
           keyboardType="phone-pad"
-          placeholder="eg. 7XXXXXXXX"
+          placeholder="7XXXXXXXX"
         />
         <Input
           title="Email Address"

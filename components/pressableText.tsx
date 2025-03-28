@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   text: {
+    fontSize:16,
     textAlign: "center",
     textDecorationStyle: "solid",
     textDecorationLine: "underline",
