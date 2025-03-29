@@ -24,7 +24,7 @@ export interface serviceProvider extends serviceProviderName {
 export default function RootLayout() {
   const [user, setUser] = useState<user | null>({
   fullName: "motasem",
-  phoneNumber: "+962000000000",
+  phoneNumber: "700000000",
   email: "test@email.com",
   birthday: null,
   gender: true,
@@ -41,7 +41,9 @@ export default function RootLayout() {
     setUser(userData);
   };
   const logout = () => {
+    console.log("console in logout");
     setUser(null);
+    
   };
   return (
     <AuthContext.Provider value={{ user, login, logout }}>

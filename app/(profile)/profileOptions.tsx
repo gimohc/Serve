@@ -8,7 +8,7 @@ import MainMenuArrow from "@/components/mainMenuArrow";
 import SupportButton from "@/components/supportButton";
 
 const ProfileOptions = () => {
-  const user = useContext(AuthContext);
+  const { logout } = useContext(AuthContext);
   return (
     <View>
       <MainMenuArrow/>
@@ -39,9 +39,9 @@ const ProfileOptions = () => {
             text="Log out"
             color="red"
             route="(tabs)/marketplace"
-            onPress={() => {
-              user.logout();
-            }}
+            onPress={
+              logout
+            }
           />
           <Text style={[styles.heading, {marginTop:30}]}> Support </Text>
 
@@ -59,9 +59,6 @@ const ProfileOptions = () => {
 export default ProfileOptions;
 
 const styles = StyleSheet.create({
-  container: {
-    margin: "auto",
-  },
   options: {
     paddingTop:20,
   },

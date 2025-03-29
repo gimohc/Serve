@@ -1,4 +1,4 @@
-import { ImageSourcePropType, Pressable, StyleSheet, Text, TextStyle, Image } from "react-native";
+import { ImageSourcePropType, Pressable, StyleSheet, Text, Image } from "react-native";
 import React from "react";
 import { router } from "expo-router";
 import Seperator from "./seperator";
@@ -16,8 +16,9 @@ const ProfileOption = ({ text, onPress, route, color, source, seperator }: Profi
   return (
     <>
     <Pressable style={styles.container} onPress={() => {
-      onPress;
-      router.replace(`../${route}`)
+      if(onPress) 
+        onPress();
+      router.replace(`../${route}`);
     }}>
       <Image source={source} style={[styles.icon, { tintColor: color }]} />
       <Text style={[styles.text, {color:color}]}> {text} </Text>
