@@ -23,13 +23,13 @@ export interface serviceProvider extends serviceProviderName {
 }
 export default function RootLayout() {
   const [user, setUser] = useState<user | null>({
-    fullName: "motasem",
-    phoneNumber: "+962000000000",
-    email: "test@email.com",
-    birthday: "Thu Mar 07 2025",
-    gender: true,
-    addresses: null,
-  });
+  fullName: "motasem",
+  phoneNumber: "+962000000000",
+  email: "test@email.com",
+  birthday: null,
+  gender: true,
+  addresses: null,
+});
 
   const [loaded] = useFonts({
     Pluvix: fonts.pluvix,

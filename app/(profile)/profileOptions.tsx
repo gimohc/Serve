@@ -3,7 +3,6 @@ import React, { useContext } from "react";
 import { images } from "@/constants/icons";
 import ProfileOption from "@/components/profileOptionEntry";
 import { AuthContext } from "@/contexts/authContext";
-import { colors } from "@/constants/colors";
 import ProfileCard from "@/components/profileCard";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import SupportButton from "@/components/supportButton";
@@ -11,7 +10,7 @@ import SupportButton from "@/components/supportButton";
 const ProfileOptions = () => {
   const user = useContext(AuthContext);
   return (
-    <View style={{ height: "100%" }}>
+    <View>
       <MainMenuArrow/>
         <View style={styles.options}>
           <ProfileCard/>
@@ -41,7 +40,7 @@ const ProfileOptions = () => {
             color="red"
             route="(tabs)/marketplace"
             onPress={() => {
-              user.logout;
+              user.logout();
             }}
           />
           <Text style={[styles.heading, {marginTop:30}]}> Support </Text>
@@ -65,7 +64,6 @@ const styles = StyleSheet.create({
   },
   options: {
     paddingTop:20,
-    backgroundColor: colors.LIGHT_GRAY,
   },
   heading: {
     fontWeight:"bold",
