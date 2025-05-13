@@ -34,7 +34,6 @@ const DateInput = ({ title, style, value, setValue }: DateInputProps) => {
             date={value}
             onChange={({ date }) => {
               setValue(date);
-              window.alert(date);
             }}
             styles={defaultStyles}
           />

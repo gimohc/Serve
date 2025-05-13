@@ -53,6 +53,7 @@ const DropDownList = <T extends boolean | string | null>({
                   setValue(items[key]);
                   setShowOptions(false);
                 }}
+                key={key}
               >
                 <Text style={[styles.optionText, disabled && styles.disabled]}>
                   {" "}

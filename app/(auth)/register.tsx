@@ -39,7 +39,7 @@ function Register() {
           placeholder="7XXXXXXXX"
         />
         <Input
-          title="Email Address"
+          title="Email Address (optional)"
           value={email}
           setValue={setEmail}
           keyboardType="email-address"
