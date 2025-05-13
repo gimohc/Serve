@@ -7,23 +7,24 @@ import {
   ImageSourcePropType,
   Image,
 } from "react-native";
-import React from "react";
-import { router } from "expo-router";
+import React, { Dispatch, SetStateAction } from "react";
 import { colors } from "@/constants/colors";
 
 interface StoreCategoryProps {
   title: string;
-  route: string;
   src: ImageSourcePropType;
   style?: ViewStyle;
   disabled?: true;
+  setShowSubServices: Dispatch<SetStateAction<String[] | null>>;
+  subServicesList?: string[];
 }
 const StoreCategory = ({
   title,
-  route,
   style,
   src,
   disabled,
+  setShowSubServices,
+  subServicesList,
 }: StoreCategoryProps) => {
 
   return (
@@ -31,12 +32,12 @@ const StoreCategory = ({
       disabled={disabled}
       style={[styles.container, style]}
       onPress={() => {
-        router.navigate(`../${route}`);
+        if(setShowSubServices)
+          () => setShowSubServices(subServicesList?subServicesList:null);
       }}
     >
       <View style={styles.components}>
         <Image source={src} style={styles.icon} />
-
         <Text style={styles.text}> {title} </Text>
       </View>
     </Pressable>
@@ -48,11 +49,12 @@ export default StoreCategory;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.MID_GRAY,
-    padding: 10,
-    margin: 5,
-    flex: 1,
-    height: "auto",
+    padding: 7,
+    marginVertical:"1%",
+    marginHorizontal:"1%",
+    height:"90%",
     borderRadius: "10%",
+    flex:1,
   },
   components: {
     alignItems: "center",
@@ -66,6 +68,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "bold",
     color: "white",
-    marginTop: -5,
   },
 });

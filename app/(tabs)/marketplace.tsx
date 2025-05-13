@@ -1,63 +1,78 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { colors } from "@/constants/colors";
 import StoreCategory from "@/components/storeCategory";
 import { images } from "@/constants/icons";
+import SubServicesOverlay from "@/components/subServicesOverlay";
+import { subGardening } from "@/assets/subServices";
 
 const Marketplace = () => {
-  const services = ["Cleaning", "Car", "Computer", "Gardening", "Coming Soon!"];
-  const serviceColors = [
-    colors.DARK_CYAN,
-    colors.DARK_GRAY,
-    colors.DARK_MAGENTA,
-    colors.GREEN,
-  ];
-  /*const chunkArray = (arr: string[], size: number) =>
-    Array.from({ length: Math.ceil(arr.length / size) }, (_, i) =>
-      arr.slice(i * size, i * size + size)
-    );
-*/
+  const [showSubServices, setShowSubServices] = useState<String[] | null>(null);
+
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.line}>
+    <ScrollView style={styles.pageContainer}>
+      <View style={styles.contentContainer}>
         <StoreCategory
-          title={"Cleaning Services"}
-          route={""}
-          src={images.cleaningService}
-          style={{ backgroundColor: colors.DARK_CYAN }}
+          title={"Gardening Services"}
+          src={images.gardeningService}
+          style={{ backgroundColor: colors.GREEN }}
+          setShowSubServices={setShowSubServices}
+          subServicesList={subGardening}
         />
         <StoreCategory
           title={"Car Services"}
-          route={""}
           src={images.carService}
           style={{ backgroundColor: colors.DARK_GRAY }}
+          setShowSubServices={setShowSubServices}
         />
         <StoreCategory
           title={"PC Services"}
-          route={""}
           src={images.computerService}
           style={{ backgroundColor: colors.DARK_MAGENTA }}
+          setShowSubServices={setShowSubServices}
         />
       </View>
-      <View style={styles.line}>
+      <View style={styles.contentContainer}>
         <StoreCategory
-          title={"Gardening Services"}
-          route={""}
-          src={images.gardeningService}
-          style={{ backgroundColor: colors.GREEN }}
+          title={"Cleaning Services"}
+          src={images.cleaningService}
+          style={{ backgroundColor: colors.DARK_CYAN }}
+          setShowSubServices={setShowSubServices}
         />
         <StoreCategory
           title={"Coming Soon!"}
-          route={""}
           src={images.placeholder}
+          setShowSubServices={setShowSubServices}
         />
         <StoreCategory
           title={"Coming Soon!"}
-          route={""}
           src={images.placeholder}
+          setShowSubServices={setShowSubServices}
         />
       </View>
-      {/*chunkArray(services, 3).map((row, rowIndex) => (
+      {showSubServices != null && <SubServicesOverlay />}
+    </ScrollView>
+  );
+};
+
+export default Marketplace;
+
+const styles = StyleSheet.create({
+  pageContainer: {
+    flex: 1,
+    borderTopWidth: 1,
+    borderColor: colors.DARK_GRAY,
+    marginTop: 5,
+    padding: 7,
+    width: "100%",
+  },
+  contentContainer: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+  },
+});
+
+/*chunkArray(services, 3).map((row, rowIndex) => (
         <View key={rowIndex} style={styles.line}>
           {row.map((service: string, index: number) => {
             const imageName = `${service.toLowerCase()}Service`;
@@ -73,23 +88,4 @@ const Marketplace = () => {
             );
           })}
         </View>
-      ))*/}
-    </ScrollView>
-  );
-};
-
-export default Marketplace;
-
-const styles = StyleSheet.create({
-  container: {
-    borderTopWidth: 1,
-    borderColor: colors.DARK_GRAY,
-    marginTop: 5,
-    padding: 5,
-    width: "auto",
-    height: "auto",
-  },
-  line: {
-    flexDirection: "row",
-  },
-});
+      ))*/
