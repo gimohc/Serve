@@ -28,7 +28,7 @@ function Login() {
         <CustomButton title="Log in" style={styles.button} onPress={() => {}} />
 
         <PressableText text="Don't have an account?" route="./register" />
-        <PressableText text="Forgot password?" route="(auth)/forgotPassword" />
+        <PressableText text="Forgot password?" route="/forgotPassword" />
       </View>
     </>
   );
