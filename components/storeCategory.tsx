@@ -14,26 +14,21 @@ interface StoreCategoryProps {
   title: string;
   src: ImageSourcePropType;
   style?: ViewStyle;
-  disabled?: true;
-  setShowSubServices: Dispatch<SetStateAction<String[] | null>>;
+  setSubServicesShown: Dispatch<SetStateAction<String[] | null>>;
   subServicesList?: string[];
 }
 const StoreCategory = ({
   title,
   style,
   src,
-  disabled,
-  setShowSubServices,
+  setSubServicesShown,
   subServicesList,
 }: StoreCategoryProps) => {
-
   return (
     <Pressable
-      disabled={disabled}
       style={[styles.container, style]}
       onPress={() => {
-        if(setShowSubServices)
-          () => setShowSubServices(subServicesList?subServicesList:null);
+        setSubServicesShown(subServicesList ? subServicesList : null);
       }}
     >
       <View style={styles.components}>
@@ -50,11 +45,11 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.MID_GRAY,
     padding: 7,
-    marginVertical:"1%",
-    marginHorizontal:"1%",
-    height:"90%",
+    marginVertical: "1%",
+    marginHorizontal: "1%",
+    height: 180,
     borderRadius: "10%",
-    flex:1,
+    flex: 1,
   },
   components: {
     alignItems: "center",

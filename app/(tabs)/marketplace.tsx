@@ -7,7 +7,7 @@ import SubServicesOverlay from "@/components/subServicesOverlay";
 import { subGardening } from "@/assets/subServices";
 
 const Marketplace = () => {
-  const [showSubServices, setShowSubServices] = useState<String[] | null>(null);
+  const [subServicesShown, setSubServicesShown] = useState<String[] | null>(null);
 
   return (
     <ScrollView style={styles.pageContainer}>
@@ -16,20 +16,20 @@ const Marketplace = () => {
           title={"Gardening Services"}
           src={images.gardeningService}
           style={{ backgroundColor: colors.GREEN }}
-          setShowSubServices={setShowSubServices}
+          setSubServicesShown={setSubServicesShown}
           subServicesList={subGardening}
         />
         <StoreCategory
           title={"Car Services"}
           src={images.carService}
           style={{ backgroundColor: colors.DARK_GRAY }}
-          setShowSubServices={setShowSubServices}
+          setSubServicesShown={setSubServicesShown}
         />
         <StoreCategory
           title={"PC Services"}
           src={images.computerService}
           style={{ backgroundColor: colors.DARK_MAGENTA }}
-          setShowSubServices={setShowSubServices}
+          setSubServicesShown={setSubServicesShown}
         />
       </View>
       <View style={styles.contentContainer}>
@@ -37,20 +37,71 @@ const Marketplace = () => {
           title={"Cleaning Services"}
           src={images.cleaningService}
           style={{ backgroundColor: colors.DARK_CYAN }}
-          setShowSubServices={setShowSubServices}
+          setSubServicesShown={setSubServicesShown}
         />
         <StoreCategory
           title={"Coming Soon!"}
           src={images.placeholder}
-          setShowSubServices={setShowSubServices}
+          setSubServicesShown={setSubServicesShown}
         />
         <StoreCategory
           title={"Coming Soon!"}
           src={images.placeholder}
-          setShowSubServices={setShowSubServices}
+          setSubServicesShown={setSubServicesShown}
         />
       </View>
-      {showSubServices != null && <SubServicesOverlay />}
+      <View style={styles.contentContainer}>
+        <StoreCategory
+          title={"Coming Soon!"}
+          src={images.placeholder}
+          setSubServicesShown={setSubServicesShown}
+        />
+        <StoreCategory
+          title={"Coming Soon!"}
+          src={images.placeholder}
+          setSubServicesShown={setSubServicesShown}
+        />
+        <StoreCategory
+          title={"Coming Soon!"}
+          src={images.placeholder}
+          setSubServicesShown={setSubServicesShown}
+        />
+      </View>
+      <View style={styles.contentContainer}>
+        <StoreCategory
+          title={"Coming Soon!"}
+          src={images.placeholder}
+          setSubServicesShown={setSubServicesShown}
+        />
+        <StoreCategory
+          title={"Coming Soon!"}
+          src={images.placeholder}
+          setSubServicesShown={setSubServicesShown}
+        />
+        <StoreCategory
+          title={"Coming Soon!"}
+          src={images.placeholder}
+          setSubServicesShown={setSubServicesShown}
+        />
+      </View>
+      <View style={styles.contentContainer}>
+        <StoreCategory
+          title={"Coming Soon!"}
+          src={images.placeholder}
+          setSubServicesShown={setSubServicesShown}
+        />
+        <StoreCategory
+          title={"Coming Soon!"}
+          src={images.placeholder}
+          setSubServicesShown={setSubServicesShown}
+        />
+        <StoreCategory
+          title={"Coming Soon!"}
+          src={images.placeholder}
+          setSubServicesShown={setSubServicesShown}
+        />
+      </View>
+      {subServicesShown != null && <SubServicesOverlay setSubServicesShown={setSubServicesShown} subServicesList={subServicesShown}/>}
     </ScrollView>
   );
 };
@@ -65,12 +116,23 @@ const styles = StyleSheet.create({
     marginTop: 5,
     padding: 7,
     width: "100%",
+    position:"relative",
   },
   contentContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
   },
 });
+
+/*const services = [
+    { title: "Gardening Services", color: colors.GREEN },
+    { title: "Car Services", color: colors.DARK_MAGENTA },
+    { title: "Cleaning Services", color: colors.DARK_CYAN },
+    { title: "Coming Soon!", color: colors.DARK_GRAY },
+    { title: "Coming Soon!", color: colors.DARK_GRAY },
+    { title: "Coming Soon!", color: colors.DARK_GRAY },
+  ];
+*/
 
 /*chunkArray(services, 3).map((row, rowIndex) => (
         <View key={rowIndex} style={styles.line}>
