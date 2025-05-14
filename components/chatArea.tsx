@@ -14,7 +14,7 @@ const ChatArea = ({messages} : chatAreaProps) => {
     <View style={styles.container}>
       <ScrollView style={styles.messagesContainer}>
         {messages.map((message: message) => {
-          return <Message key={"Message" + message.id} message={message.message} source={message.source} />;
+          return <Message key={"Message" + message.id} message={message.message} source={message.source} sideId={message.serviceProviderID}/>;
         })}
       </ScrollView>
       <MessageInputForm />
