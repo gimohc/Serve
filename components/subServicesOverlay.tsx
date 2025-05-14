@@ -15,7 +15,7 @@ const SubServicesOverlay = ({
   return (
     <View style={styles.container}>
       <Pressable onPress={() => setSubServicesShown(null)} style={styles.close}>
-        <Text>Close</Text>
+        <Text style={{fontWeight:"bold"}}>Close</Text>
       </Pressable>
       {subServicesList.map((subServiceName) => {
         return (
