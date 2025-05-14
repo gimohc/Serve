@@ -13,6 +13,7 @@ import { colors } from "@/constants/colors";
 const MessageInputForm = () => {
   const [message, setMessage] = useState<string>("");
   let messageIsEmpty = false;
+
   if (message.trim() == "") messageIsEmpty = true;
   return (
     <View style={styles.container}>

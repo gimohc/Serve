@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 import React from "react";
 import { colors } from "@/constants/colors";
 import MessageInputForm from "./messageInputForm";
@@ -7,14 +7,21 @@ import Message, { message } from "./message";
 // messages list is placeholder to retrieve data from api
 
 export interface chatAreaProps {
-    messages: message[]
+  messages: message[];
 }
-const ChatArea = ({messages} : chatAreaProps) => {
+const ChatArea = ({ messages }: chatAreaProps) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.messagesContainer}>
         {messages.map((message: message) => {
-          return <Message key={"Message" + message.id} message={message.message} source={message.source} sideId={message.serviceProviderID}/>;
+          return (
+            <Message
+              key={"Message" + message.id}
+              message={message.message}
+              source={message.source}
+              sideId={message.sideId}
+            />
+          );
         })}
       </ScrollView>
       <MessageInputForm />

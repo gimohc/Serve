@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { Dispatch, SetStateAction } from "react";
+import React, { useContext } from "react";
 import { colors } from "@/constants/colors";
+import { MessageContext } from "@/contexts/messageContext";
 
 export interface chatUser {
   apiID: string;
@@ -8,19 +9,21 @@ export interface chatUser {
 }
 interface chatUserProps {
   user: chatUser;
-  index: number;
-  activeIndex: number;
-  setActiveIndex: Dispatch<SetStateAction<number>>;
 }
-const ChatUser = ({
-  index,
-  activeIndex,
-  setActiveIndex,
-}: chatUserProps) => {
+const ChatUser = ({ user }: chatUserProps) => {
+  const messageContext = useContext(MessageContext);
   return (
-    <Pressable style={[styles.container, index == activeIndex && {backgroundColor: colors.MID_GRAY,}]} onPress={() => { setActiveIndex(index)}}>
-      <View >
-        <Text style={styles.text}>ChatUser</Text>
+    <Pressable
+      style={[
+        styles.container,
+        user == messageContext?.user && { backgroundColor: colors.MID_GRAY },
+      ]}
+      onPress={() => {
+        messageContext?.setChatUser(user);
+      }}
+    >
+      <View>
+        <Text style={styles.text}>{user.name}</Text>
       </View>
     </Pressable>
   );
@@ -31,11 +34,11 @@ export default ChatUser;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.LIGHT_GRAY,
-    padding:15,
-    paddingRight:50,
+    padding: 15,
+    paddingRight: 50,
   },
   text: {
-    fontSize:15,
-    fontWeight:"bold",
+    fontSize: 15,
+    fontWeight: "bold",
   },
 });

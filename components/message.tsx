@@ -2,24 +2,30 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import { colors } from "@/constants/colors";
 import { AuthContext } from "@/contexts/authContext";
+import { MessageContext } from "@/contexts/messageContext";
 
 export interface message extends messageProps {
   id: string;
   userID: string;
-  serviceProviderID: string;
+  sideId: string;
 }
 
 export interface messageProps {
   message: string;
   source: boolean; // true for client sent / false for provider sent
-  sideId: string; 
+  sideId: string;
 }
 
-const Message = ({ message, source, sideId }: messageProps) => {
+const Message = ({ message, source }: messageProps) => {
   const { user } = useContext(AuthContext);
+  const messageContext = useContext(MessageContext);
+
   return (
     <>
-      <Text style={!source && {alignSelf:"flex-end", marginVertical:4}}> {source?user?.fullName: "other side ID:" +sideId} </Text>
+      <Text style={!source && { alignSelf: "flex-end", marginVertical: 4 }}>
+        {" "}
+        {source ? user?.fullName : messageContext?.user.name}{" "}
+      </Text>
       <View style={[styles.container, !source && styles.storeSent]}>
         <Text style={styles.messageText}> {message} </Text>
       </View>

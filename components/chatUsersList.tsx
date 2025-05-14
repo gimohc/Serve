@@ -1,32 +1,20 @@
 import { StyleSheet, Text, ScrollView } from "react-native";
-import React, { Dispatch, SetStateAction } from "react";
-import ChatUser, { user } from "./chatUser";
+import React from "react";
+import ChatUser, { chatUser } from "./chatUser";
 import { colors } from "@/constants/colors";
 
-
 interface ChatUsersListProps {
-    users: user[];
-    chatsHidden: boolean;
-    activeIndex: number;
-    setActiveIndex: Dispatch<SetStateAction<number>>;
+  users: chatUser[];
+  chatsHidden: boolean;
+}
 
-} 
-
-const ChatUsersList = ({ users, chatsHidden, activeIndex, setActiveIndex } : ChatUsersListProps) => {
+const ChatUsersList = ({ users, chatsHidden }: ChatUsersListProps) => {
   return (
     <ScrollView
       style={[styles.usersContainer, chatsHidden && { display: "none" }]}
     >
-      {users.map((user: user, index: number) => {
-        return (
-          <ChatUser
-            key={"userNameChat" + index}
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
-            index={index}
-            user={user}
-          />
-        );
+      {users.map((user: chatUser, index: number) => {
+        return <ChatUser key={"userNameChat" + index} user={user} />;
       })}
     </ScrollView>
   );
