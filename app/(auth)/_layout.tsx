@@ -7,6 +7,7 @@ const AuthLayout = () => {
       <Stack.Screen name="login" />
       <Stack.Screen name="register" />
       <Stack.Screen name="forgotPassword" />
+      <Stack.Screen name="forgotPassword2" />
     </Stack>
   );
 };
