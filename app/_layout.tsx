@@ -5,7 +5,7 @@ import { AuthContext } from "@/contexts/authContext";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { useState } from "react";
-import { StatusBar } from "react-native";
+import { ImageSourcePropType, StatusBar } from "react-native";
 
 export interface user {
   fullName: string;
@@ -17,10 +17,11 @@ export interface user {
 export interface serviceProvider extends chatUser {
   type: string;
   subTypes: string[];
-  email: string;
-  phoneNumber: string;
+  email?: string;
+  phoneNumber?: string;
   logo: string;
   address: string;
+  rating: number;
 }
 export default function RootLayout() {
   const [user, setUser] = useState<user | null>({
