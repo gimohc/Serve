@@ -1,3 +1,4 @@
+import { chatUser } from "@/components/chatUser";
 import { colors } from "@/constants/colors";
 import { fonts } from "@/constants/fonts";
 import { AuthContext } from "@/contexts/authContext";
@@ -5,7 +6,6 @@ import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import { useState } from "react";
 import { StatusBar } from "react-native";
-import { serviceProviderName } from "./(tabs)/chat";
 
 export interface user {
   fullName: string;
@@ -13,23 +13,23 @@ export interface user {
   email: string | null;
   birthday: string | null;
   gender: boolean;
-  addresses: string[] | null;
 }
-export interface serviceProvider extends serviceProviderName {
+export interface serviceProvider extends chatUser {
   type: string;
   subTypes: string[];
   email: string;
   phoneNumber: string;
+  logo: string;
+  address: string;
 }
 export default function RootLayout() {
   const [user, setUser] = useState<user | null>({
-  fullName: "motasem",
-  phoneNumber: "700000000",
-  email: "test@email.com",
-  birthday: null,
-  gender: true,
-  addresses: null,
-});
+    fullName: "motasem",
+    phoneNumber: "700000000",
+    email: "test@email.com",
+    birthday: null,
+    gender: true,
+  });
 
   const [loaded] = useFonts({
     Pluvix: fonts.pluvix,
@@ -43,7 +43,6 @@ export default function RootLayout() {
   const logout = () => {
     console.log("console in logout");
     setUser(null);
-    
   };
   return (
     <AuthContext.Provider value={{ user, login, logout }}>
