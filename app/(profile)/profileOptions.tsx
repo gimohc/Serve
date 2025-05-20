@@ -18,7 +18,7 @@ const ProfileOptions = () => {
           <Text style={styles.heading}> Account </Text>
           <ProfileOption
             seperator
-            source={images.information}
+            source={images.profile}
             text="Profile Details"
             route="./profileDetails"
           />
@@ -44,7 +44,13 @@ const ProfileOptions = () => {
             }
           />
           <Text style={[styles.heading, {marginTop:30}]}> Support </Text>
-
+          
+          <ProfileOption
+            source={images.information}
+            seperator
+            text="About Us"
+            route="../(root)/aboutUs"
+          />
           <ProfileOption
             source={images.support}
             text="Contact Support"
