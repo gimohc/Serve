@@ -4,7 +4,7 @@ import { colors } from "@/constants/colors";
 import StoreCategory from "@/components/storeCategory";
 import { images } from "@/constants/icons";
 import SubServicesOverlay from "@/components/subServicesOverlay";
-import { subPCs } from "@/assets/subServices";
+import { subPCs } from "@/constants/subServices";
 
 const Marketplace = () => {
   const [subServicesShown, setSubServicesShown] = useState<String[] | null>(
