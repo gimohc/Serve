@@ -19,7 +19,7 @@ const Marketplace = () => {
           src={images.computerService}
           style={{ backgroundColor: colors.PC_BACKGROUND }}
           setSubServicesShown={setSubServicesShown}
-          subServicesList={subPCs}
+          subServicesList={subPCs.map((entry) => entry.subService)}
         />
         <StoreCategory
           title={"Car Services"}
