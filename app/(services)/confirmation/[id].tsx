@@ -1,10 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { useLocalSearchParams } from 'expo-router';
 
 const ConfirmOrder = () => {
+  
+  const { id } = useLocalSearchParams();
+  // subservice - providerID
   return (
     <View>
-      <Text>ConfirmOrder</Text>
+      <Text>{id}</Text>
     </View>
   )
 }

@@ -49,7 +49,14 @@ const Store = () => {
         {sub
           .filter((entry) => provider.subTypes.includes(entry.subService))
           .map((entry) => {
-            return <View><Text> {entry.maxPrice} </Text></View>;
+            return (
+              <Pressable style={styles.subContainer} onPress={() => {router.replace(`/confirmation/${entry.subService}-${provider.apiID}`)}}>
+                <Text style={styles.text}>{entry.subService}</Text>
+                <Text style={styles.text}>
+                  {`Price range: ${entry.minPrice}-${entry.maxPrice} JOD`}
+                </Text>
+              </Pressable>
+            );
           })}
       </ScrollView>
     </View>
@@ -89,4 +96,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.LIGHT_GRAY,
   },
   container: {},
+  subContainer: {
+    borderWidth: 1,
+    borderRadius: "10%",
+    margin: 10,
+    padding:15,
+  },
+  text: {
+    fontSize:20,
+    fontWeight:"bold"
+  }
 });
