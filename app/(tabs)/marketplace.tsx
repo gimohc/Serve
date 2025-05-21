@@ -4,7 +4,7 @@ import { colors } from "@/constants/colors";
 import StoreCategory from "@/components/storeCategory";
 import { images } from "@/constants/icons";
 import SubServicesOverlay from "@/components/subServicesOverlay";
-import { subPCs } from "@/constants/subServices";
+import { sub } from "@/constants/subServices";
 
 const Marketplace = () => {
   const [subServicesShown, setSubServicesShown] = useState<String[] | null>(
@@ -19,7 +19,7 @@ const Marketplace = () => {
           src={images.computerService}
           style={{ backgroundColor: colors.PC_BACKGROUND }}
           setSubServicesShown={setSubServicesShown}
-          subServicesList={subPCs.map((entry) => entry.subService)}
+          subServicesList={sub.map((entry) => entry.subService)}
         />
         <StoreCategory
           title={"Car Services"}

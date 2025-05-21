@@ -1,9 +1,17 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  ScrollView,
+} from "react-native";
 import React from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { serviceProvider } from "@/app/_layout";
 import { colors } from "@/constants/colors";
 import MainMenuArrow from "@/components/mainMenuArrow";
+import { sub } from "@/constants/subServices";
 
 // local params return what this specific store provides
 
@@ -12,7 +20,7 @@ const Store = () => {
   // get service provider by id
   const provider: serviceProvider = {
     type: "Any",
-    subTypes: ["service1", "service2", "service3", "service4"],
+    subTypes: ["Maintenance", "Cleaning", "Upgrading", "Service 4"],
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 4,
@@ -29,14 +37,21 @@ const Store = () => {
           style={styles.contact}
           onPress={() => {
             router.replace("/(tabs)/chat");
+            {
+              /* create new contact */
+            }
           }}
         >
-          {" "}
-          {/* create new contact */}
           <Text> Contact Now </Text>
         </Pressable>
       </View>
-      <View> </View>
+      <ScrollView>
+        {sub
+          .filter((entry) => provider.subTypes.includes(entry.subService))
+          .map((entry) => {
+            return <View><Text> {entry.maxPrice} </Text></View>;
+          })}
+      </ScrollView>
     </View>
   );
 };
