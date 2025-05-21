@@ -1,1 +1,1 @@
-export const subGardening  = ["Planting", "General Care", "Watering", "Pruning"];
+export const subPCs  = ["Maintenance", "Cleaning", "Upgrading"];

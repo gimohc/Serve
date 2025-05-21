@@ -11,4 +11,8 @@ export const colors = {
     DARK_MAGENTA: '#808',
     DARK_CYAN: '#078',
     GREEN: '#108030',
+    PC_BACKGROUND:'#CC6A00',
+    GARD_BACKGROUND:'#BDD16B',
+    CLEAN_BACKGROUND:"#80C3BF"
+
 }

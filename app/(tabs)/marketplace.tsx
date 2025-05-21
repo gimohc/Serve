@@ -4,20 +4,22 @@ import { colors } from "@/constants/colors";
 import StoreCategory from "@/components/storeCategory";
 import { images } from "@/constants/icons";
 import SubServicesOverlay from "@/components/subServicesOverlay";
-import { subGardening } from "@/assets/subServices";
+import { subPCs } from "@/assets/subServices";
 
 const Marketplace = () => {
-  const [subServicesShown, setSubServicesShown] = useState<String[] | null>(null);
+  const [subServicesShown, setSubServicesShown] = useState<String[] | null>(
+    null
+  );
 
   return (
     <ScrollView style={styles.pageContainer}>
       <View style={styles.contentContainer}>
         <StoreCategory
-          title={"Gardening Services"}
-          src={images.gardeningService}
-          style={{ backgroundColor: colors.GREEN }}
+          title={"Pc Services"}
+          src={images.computerService}
+          style={{ backgroundColor: colors.PC_BACKGROUND }}
           setSubServicesShown={setSubServicesShown}
-          subServicesList={subGardening}
+          subServicesList={subPCs}
         />
         <StoreCategory
           title={"Car Services"}
@@ -26,9 +28,9 @@ const Marketplace = () => {
           setSubServicesShown={setSubServicesShown}
         />
         <StoreCategory
-          title={"PC Services"}
-          src={images.computerService}
-          style={{ backgroundColor: colors.DARK_MAGENTA }}
+          title={"Gardening Services"}
+          src={images.gardeningService}
+          style={{ backgroundColor: colors.GARD_BACKGROUND }}
           setSubServicesShown={setSubServicesShown}
         />
       </View>
@@ -36,7 +38,7 @@ const Marketplace = () => {
         <StoreCategory
           title={"Cleaning Services"}
           src={images.cleaningService}
-          style={{ backgroundColor: colors.DARK_CYAN }}
+          style={{ backgroundColor: colors.CLEAN_BACKGROUND }}
           setSubServicesShown={setSubServicesShown}
         />
         <StoreCategory
@@ -101,7 +103,12 @@ const Marketplace = () => {
           setSubServicesShown={setSubServicesShown}
         />
       </View>
-      {subServicesShown != null && <SubServicesOverlay setSubServicesShown={setSubServicesShown} subServicesList={subServicesShown}/>}
+      {subServicesShown != null && (
+        <SubServicesOverlay
+          setSubServicesShown={setSubServicesShown}
+          subServicesList={subServicesShown}
+        />
+      )}
     </ScrollView>
   );
 };
@@ -116,7 +123,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     padding: 7,
     width: "100%",
-    position:"relative",
+    position: "relative",
   },
   contentContainer: {
     flexDirection: "row",

@@ -32,7 +32,7 @@ const StoreCategory = ({
       }}
     >
       <View style={styles.components}>
-        <Image source={src} style={styles.icon} />
+        {<Image source={src} style={styles.icon} />}
         <Text style={styles.text}> {title} </Text>
       </View>
     </Pressable>
@@ -44,7 +44,6 @@ export default StoreCategory;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.MID_GRAY,
-    padding: 7,
     marginVertical: "1%",
     marginHorizontal: "1%",
     height: 180,
@@ -56,7 +55,8 @@ const styles = StyleSheet.create({
     margin: "auto",
   },
   icon: {
-    width: 54,
+    objectFit:"contain",
+    width: 100,
     height: 54,
   },
   text: {
