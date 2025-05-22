@@ -52,6 +52,7 @@ function Register() {
             title="Birthday"
             value={birthday}
             setValue={setBirthday}
+            placeholder="Select Birthday"
           />
           <DropDownList
             style={styles.rowElement}

@@ -12,8 +12,9 @@ interface DateInputProps {
   value: DateType;
   setValue: Dispatch<SetStateAction<DateType>>;
   style?: ViewStyle;
+  placeholder?:string;
 }
-const DateInput = ({ title, style, value, setValue }: DateInputProps) => {
+const DateInput = ({ title, style, value, setValue, placeholder }: DateInputProps) => {
   const [showCalendar, setShowCalendar] = useState<boolean>(false);
   const defaultStyles = useDefaultStyles();
   return (
@@ -22,7 +23,7 @@ const DateInput = ({ title, style, value, setValue }: DateInputProps) => {
         <Input
           center
           title={title}
-          value={value ? value.toString().substring(4, 15) : "Select Birthday"}
+          value={value ? value.toString().substring(4, 15) : `${placeholder}`}
           setValue={setValue}
           disabled
         />
