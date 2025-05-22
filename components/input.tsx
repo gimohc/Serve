@@ -6,6 +6,7 @@ import {
   Image,
   View,
   ViewStyle,
+  TextStyle,
 } from "react-native";
 import React, { Dispatch, SetStateAction } from "react";
 import { DateType } from "react-native-ui-datepicker";
@@ -22,6 +23,7 @@ interface InputProps {
   style?: ViewStyle;
   center?: true;
   keyboardType?: KeyboardTypeOptions;
+  textStyle?:TextStyle;
   password?: true;
   phone?: true;
   placeholder?: string;
@@ -37,6 +39,7 @@ export default function Input({
   password,
   phone,
   placeholder,
+  textStyle,
 }: InputProps) {
   return (
     <View style={[style, styles.container]}>
@@ -55,6 +58,7 @@ export default function Input({
             styles.input,
             styles.text,
             phone && { paddingLeft: 70 },
+            textStyle
           ]}
           placeholder={placeholder}
           value={value?.toString()}

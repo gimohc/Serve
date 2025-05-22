@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View, ViewStyle } from "react-native";
+import { Pressable, StyleSheet, Text, TextStyle, View, ViewStyle } from "react-native";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import Input from "./input";
 import { colors } from "@/constants/colors";
@@ -8,6 +8,7 @@ interface DropDownListProps<T extends boolean | string | null> {
   items: { [key: string]: T };
   title: string;
   style?: ViewStyle;
+  textStyle?: TextStyle;
   value: T;
   setValue: Dispatch<SetStateAction<T>>;
 }
@@ -24,6 +25,7 @@ const DropDownList = <T extends boolean | string | null>({
   style,
   value,
   setValue,
+  textStyle
 }: DropDownListProps<T>) => {
   const [showOptions, setShowOptions] = useState<boolean>(false);
   const objectKeys = Object.keys(items);
@@ -36,6 +38,7 @@ const DropDownList = <T extends boolean | string | null>({
         }}
       >
         <Input
+          textStyle={textStyle}
           center
           title={title}
           value={findKeyByValue(items, value)}
