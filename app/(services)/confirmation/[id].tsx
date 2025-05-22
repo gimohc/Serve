@@ -8,6 +8,7 @@ const ConfirmOrder = () => {
   // subservice - providerID
   return (
     <View>
+      <Text style={styles.textHeader}></Text>
       <Text>{id}</Text>
     </View>
   )
@@ -15,4 +16,9 @@ const ConfirmOrder = () => {
 
 export default ConfirmOrder
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  textHeader: {
+    fontSize:22,
+
+  }
+})
