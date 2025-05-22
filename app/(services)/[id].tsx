@@ -25,7 +25,7 @@ const Stores = () => {
       <MainMenuArrow/>
       <Text style={styles.pageTitle}>{id} Providers</Text>
       {providers.map((entry) => {
-        return <StoreEntry provider={entry} />;
+        return <StoreEntry key={entry.apiID + "Store Entry"} provider={entry} />;
       })}
     </View>
   );

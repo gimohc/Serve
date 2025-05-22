@@ -50,7 +50,7 @@ const Store = () => {
           .filter((entry) => provider.subTypes.includes(entry.subService))
           .map((entry) => {
             return (
-              <Pressable style={styles.subContainer} onPress={() => {router.replace(`/confirmation/${entry.subService}-${provider.apiID}`)}}>
+              <Pressable key={entry.subService + "StorePage"} style={styles.subContainer} onPress={() => {router.replace(`/confirmation/${entry.subService}-${provider.apiID}`)}}>
                 <Text style={styles.text}>{entry.subService}</Text>
                 <Text style={styles.text}>
                   {`Price range: ${entry.minPrice}-${entry.maxPrice} JOD`}

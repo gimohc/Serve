@@ -15,22 +15,27 @@ const SubServicesOverlay = ({
   return (
     <View style={styles.container}>
       <Pressable onPress={() => setSubServicesShown(null)} style={styles.close}>
-        <Text style={{fontWeight:"bold"}}>Close</Text>
+        <Text style={{ fontWeight: "bold" }}>Close</Text>
       </Pressable>
       {subServicesList.map((subServiceName) => {
         return (
-          <>
-          <Pressable
-            style={styles.textContainer}
-            key={"subService" + subServiceName + "0Overlay"}
-            onPress={() => {
-              router.replace(`/${subServiceName}`);
-            }}
-          >
-            <Text style={styles.text}> {subServiceName} </Text>
-          </Pressable>
-          <Seperator style={{backgroundColor:colors.GREEN, height:100, width:"100%"}}/>
-          </>
+          <View key={"subService" + subServiceName + "0Overlay"}>
+            <Pressable
+              style={styles.textContainer}
+              onPress={() => {
+                router.replace(`/${subServiceName}`);
+              }}
+            >
+              <Text style={styles.text}> {subServiceName} </Text>
+            </Pressable>
+            <Seperator
+              style={{
+                backgroundColor: colors.GREEN,
+                height: 100,
+                width: "100%",
+              }}
+            />
+          </View>
         );
       })}
     </View>
