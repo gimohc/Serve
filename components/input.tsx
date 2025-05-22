@@ -57,7 +57,7 @@ export default function Input({
             phone && { paddingLeft: 70 },
           ]}
           placeholder={placeholder}
-          value={phone ? value?.toString().substring(4) : value?.toString()}
+          value={value?.toString()}
           onChangeText={setValue}
           keyboardType={keyboardType}
           secureTextEntry={password}

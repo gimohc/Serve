@@ -12,11 +12,10 @@ import { genders } from "../(auth)/register";
 
 function ProfileDetails() {
   const user = useContext(AuthContext).user;
-  if(user == null) {
+  if (user == null) {
     window.alert("Error fetching user data");
-    return <MainMenuArrow/>
-  }
-  else {
+    return <MainMenuArrow />;
+  } else {
     const [fullName, setFullName] = useState<string>(user.fullName);
     const [phoneNumber, setPhoneNumber] = useState<string>(user.phoneNumber);
     const [email, setEmail] = useState<string | null>(user.email);
@@ -37,10 +36,8 @@ function ProfileDetails() {
           <Input
             phone
             title="Phone Number"
-            value={phoneNumber}
-            setValue={setPhoneNumber}
+            value={phoneNumber.substring(4)}
             keyboardType="phone-pad"
-            placeholder="7XXXXXXXX"
             disabled
           />
           <Input
