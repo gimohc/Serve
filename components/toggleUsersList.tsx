@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Image, View } from "react-native";
 import React, { Dispatch, SetStateAction } from "react";
 import { images } from "@/constants/icons";
+import { colors } from "@/constants/colors";
 
 interface ToggleUsersListProps {
   chatsHidden: boolean;
@@ -30,9 +31,11 @@ const styles = StyleSheet.create({
     zIndex: 1,
     position: "absolute",
     top: 0,
-    left:20,
+    left: 20,
   },
   usersListExpanded: {
-    marginLeft:20,
+    paddingLeft: 20,
+
+    backgroundColor: colors.LIGHT_GRAY,
   },
 });
