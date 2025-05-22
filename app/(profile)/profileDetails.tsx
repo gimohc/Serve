@@ -56,6 +56,7 @@ function ProfileDetails() {
               title="Birthday"
               value={birthday}
               setValue={setBirthday}
+              placeholder="Birthday"
             />
             <Input
               disabled
