@@ -41,6 +41,7 @@ function ProfileDetails() {
             setValue={setPhoneNumber}
             keyboardType="phone-pad"
             placeholder="7XXXXXXXX"
+            disabled
           />
           <Input
             title="Email Address"

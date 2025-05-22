@@ -26,9 +26,9 @@ export interface serviceProvider extends chatUser {
 export default function RootLayout() {
   const [user, setUser] = useState<user | null>({
     fullName: "motasem",
-    phoneNumber: "700000000",
+    phoneNumber: "+962700000000",
     email: "test@email.com",
-    birthday: null,
+    birthday: "Wed May 07 2025",
     gender: true,
   });
 

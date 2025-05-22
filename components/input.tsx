@@ -16,14 +16,15 @@ interface InputProps {
   value: string | boolean | undefined | null;
   setValue?:
     | Dispatch<SetStateAction<string>>
-    | Dispatch<SetStateAction<DateType>> | Dispatch<SetStateAction<string | null>>;
+    | Dispatch<SetStateAction<DateType>>
+    | Dispatch<SetStateAction<string | null>>;
   disabled?: true;
   style?: ViewStyle;
   center?: true;
   keyboardType?: KeyboardTypeOptions;
   password?: true;
   phone?: true;
-  placeholder?:string;
+  placeholder?: string;
 }
 export default function Input({
   title,
@@ -35,7 +36,7 @@ export default function Input({
   keyboardType,
   password,
   phone,
-  placeholder
+  placeholder,
 }: InputProps) {
   return (
     <View style={[style, styles.container]}>
@@ -44,19 +45,23 @@ export default function Input({
         {phone && (
           <View style={styles.code}>
             <Image source={images.flag_jo} style={styles.flagIcon} />
-            <Text style={{paddingTop:2}}> +962 </Text>
+            <Text style={{ paddingTop: 2 }}> +962 </Text>
           </View>
         )}
         <TextInput
           readOnly={disabled}
-          style={[center && { textAlign: "center" }, styles.input, styles.text,  phone && {paddingLeft:70},]}
+          style={[
+            center && { textAlign: "center" },
+            styles.input,
+            styles.text,
+            phone && { paddingLeft: 70 },
+          ]}
           placeholder={placeholder}
-          value={value?.toString()}
+          value={phone ? value?.toString().substring(4) : value?.toString()}
           onChangeText={setValue}
           keyboardType={keyboardType}
           secureTextEntry={password}
         />
-          
       </View>
     </View>
   );
@@ -71,8 +76,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderWidth: 1,
     padding: 10,
-    fontSize:20,
-
+    fontSize: 20,
   },
   text: {
     paddingLeft: 10,
@@ -80,12 +84,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   code: {
-    alignContent:"center",
+    alignContent: "center",
     position: "absolute",
-    left:6,
-    top:"50%",
-    transform: [{translateY:"-50%"}],
-    flexDirection:"row"
+    left: 6,
+    top: "50%",
+    transform: [{ translateY: "-50%" }],
+    flexDirection: "row",
   },
 
   flagIcon: {
