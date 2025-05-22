@@ -19,19 +19,21 @@ const Marketplace = () => {
           src={images.computerService}
           style={{ backgroundColor: colors.PC_BACKGROUND }}
           setSubServicesShown={setSubServicesShown}
-          subServicesList={sub.map((entry) => entry.subService)}
+          subServicesList={sub.filter(entry => entry.service == "PC").map((entry) => entry.subService)}
         />
         <StoreCategory
           title={"Car Services"}
           src={images.carService}
           style={{ backgroundColor: colors.DARK_GRAY }}
           setSubServicesShown={setSubServicesShown}
+          subServicesList={sub.filter(entry => entry.service == "Car").map((entry) => entry.subService)}
         />
         <StoreCategory
           title={"Gardening Services"}
           src={images.gardeningService}
           style={{ backgroundColor: colors.GARD_BACKGROUND }}
           setSubServicesShown={setSubServicesShown}
+          subServicesList={sub.filter(entry => entry.service == "Gardening").map((entry) => entry.subService)}
         />
       </View>
       <View style={styles.contentContainer}>
@@ -40,6 +42,7 @@ const Marketplace = () => {
           src={images.cleaningService}
           style={{ backgroundColor: colors.CLEAN_BACKGROUND }}
           setSubServicesShown={setSubServicesShown}
+          subServicesList={sub.filter(entry => entry.service == "Cleaning").map((entry) => entry.subService)}
         />
         <StoreCategory
           title={"Coming Soon!"}
