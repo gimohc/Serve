@@ -13,7 +13,6 @@ const ProfileCard = () => {
       <View style={styles.textContainer}>
 
         <Text style={styles.text}> Hello {user.user?.fullName}</Text>
-        <Text style={styles.text}> {user.user?.email} </Text>
         <Text style={styles.text}> {user.user?.phoneNumber} </Text>
       </View>
     </View>
@@ -28,18 +27,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderRadius: 50,
     borderWidth: 1,
-    backgroundColor: colors.SELECTED_PRIMARY,
     padding: 15,
     margin:50,
+    backgroundColor:colors.MID_GRAY
 
   },
   icon: {
     marginRight:30,
-    width: 96,
-    height: 96,
+    width: 74,
+    height: 74,
   },
   textContainer: {justifyContent:"center"},
   text: {
     marginTop:10,
+    fontWeight:"bold"
   },
 });

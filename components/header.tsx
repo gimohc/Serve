@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { images } from "@/constants/icons";
 import { router } from "expo-router";
 import { AuthContext } from "@/contexts/authContext";
+import { colors } from "@/constants/colors";
 
 const Header = () => {
   const user = useContext(AuthContext);
@@ -49,5 +50,7 @@ const styles = StyleSheet.create({
     marginRight: 15,
     width: 48,
     height: 48,
+    backgroundColor:colors.LIGHTEST_PRIMARY,
+    borderRadius:24,
   },
 });
