@@ -8,7 +8,7 @@ const MainMenuArrow = () => {
     <Pressable
       style={styles.container}
       onPress={() => {
-        router.replace(`../(tabs)/marketplace`);
+        router.replace(`/(tabs)/marketplace`);
       }}
     >
       <Image source={images.backArrow} style={styles.image} />
