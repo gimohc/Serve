@@ -17,9 +17,9 @@ const MessageInputForm = () => {
   if (message.trim() == "") messageIsEmpty = true;
   return (
     <View style={styles.container}>
-      <Pressable style={styles.attachmentButton}>
+      {/*<Pressable style={styles.attachmentButton}>
         <Image source={images.attachment} style={styles.attachmentIcon} />
-      </Pressable>
+      </Pressable>*/}
       <TextInput
         style={styles.messageInput}
         placeholder="Message"
