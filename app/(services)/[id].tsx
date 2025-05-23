@@ -1,5 +1,5 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { serviceProvider } from "../_layout";
 import StoreEntry from "@/components/StoreEntry";
@@ -17,17 +17,74 @@ const providers: serviceProvider[] = [
     address: "Amman, Al Waha Circle",
     rating: 3,
     apiID: "0",
+    name: "Store 2",
+  },
+  {
+    type: "Gardening",
+    subTypes: ["Planting"],
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    address: "Amman, Al Waha Circle",
+    rating: 4,
+    apiID: "1",
+    name: "Store 3",
+  },
+  {
+    type: "Gardening",
+    subTypes: ["Planting"],
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    address: "Amman, Al Waha Circle",
+    rating: 1,
+    apiID: "2",
+    name: "Store 4",
+  },
+  {
+    type: "Gardening",
+    subTypes: ["Planting"],
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    address: "Amman, Al Waha Circle",
+    rating: 2,
+    apiID: "3",
     name: "Store 1",
+  },
+  {
+    type: "Gardening",
+    subTypes: ["Planting"],
+    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    address: "Amman, Al Waha Circle",
+    rating: 5,
+    apiID: "4",
+    name: "Store 6",
   },
 ];
 const sorting: { [key: string]: string } = {
+  "Not sorted": "None",
   "Sort/name (A-Z)": "A-Z",
   "Sort/name (Z-A)": "Z-A",
   "Sort/rating": "Rating",
 };
 const Stores = () => {
   const [search, setSearch] = useState<string>("");
-  const [orderBy, setOrderBy] = useState<string>("A-Z"); 
+  const [orderBy, setOrderBy] = useState<string>("None"); 
+
+  let providersList = providers;
+  useEffect(() => {
+    providersList = providers;
+  }, [providers]) // assign retrieved list
+
+  // search query
+  let displayedProvidersList = providersList.filter((entry) => entry.name.toLowerCase().includes(search.toLowerCase()));
+
+  // sorting
+  displayedProvidersList = [...displayedProvidersList].sort((a,b) => {
+    if(orderBy == "A-Z")
+      return a.name.localeCompare(b.name);
+    else if(orderBy == "Z-A")
+      return b.name.localeCompare(a.name);
+    else if(orderBy == "Rating") 
+      return b.rating - a.rating;
+    return 0;
+  }) 
+
 
   const { id } = useLocalSearchParams();
   return (
@@ -50,7 +107,7 @@ const Stores = () => {
           textStyle={{fontSize:12}}
         />
       </View>
-      {providers.map((entry) => {
+      {displayedProvidersList.map((entry) => {
         return (
           <StoreEntry key={entry.apiID + "Store Entry"} provider={entry} />
         );
