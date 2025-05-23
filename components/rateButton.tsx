@@ -11,7 +11,6 @@ interface RateButtonProps {
 const RateButton = ({ orderID } : RateButtonProps) => {
   const [bgColor, setBgColor] = useState(colors.DARKER_PRIMARY);
   return (
-    <View style={styles.container}>
       <Pressable
         style={[styles.button, { backgroundColor: bgColor }]}
         onPressIn={() => {
@@ -26,22 +25,18 @@ const RateButton = ({ orderID } : RateButtonProps) => {
           <Text style={styles.text}>Rate Service</Text>
         </View>
       </Pressable>
-    </View>
   );
 };
 
 export default RateButton;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   button: {
-    borderRadius: "25%",
+    borderRadius: 15,
     paddingHorizontal: 15,
     paddingVertical: 10,
-    margin: "auto",
-    justifyContent: "center",
+    width:"70%",
+    marginLeft:"15%"
   },
   text: {
     fontSize: 16,

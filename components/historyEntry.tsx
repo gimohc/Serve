@@ -4,7 +4,9 @@ import { images } from "@/constants/icons";
 import { colors } from "@/constants/colors";
 import RateButton from "./rateButton";
 import RatingContainer from "./ratingContainer";
+import CustomButton from "./button";
 
+// accepted/pending -> cancelled
 export interface HistoryEntryProps {
   id: string;
   status: string;
@@ -52,16 +54,29 @@ const HistoryEntry = (props: HistoryEntryProps) => {
         </Text>
       </View>
       <View style={styles.line}>
-        <Text style={styles.text}>Provider: {props.providerId} </Text>
-
-        {props.rated && (
-          <RatingContainer style={styles.ratingIcon} rating={props.rating} />
-        )}
-        {!props.rated && (
-          <RateButton
-            orderID={`${props.id}-${props.providerId}-${props.serviceType}`}
-          />
-        )}
+        <Text style={[styles.text, { flex: 1 }]}>
+          Provider: {props.providerId}
+        </Text>
+        <View style={{flex:1}}>
+          {props.status == "COMPLETE" &&
+            (props.rated ? (
+              <RatingContainer
+                style={styles.ratingIcon}
+                rating={props.rating}
+              />
+            ) : (
+              <RateButton
+                orderID={`${props.id}-${props.providerId}-${props.serviceType}`}
+              />
+            ))}
+          {(props.status == "PENDING" || props.status == "ACCEPTED") && (
+            <CustomButton
+              title="Cancel"
+              onPress={() => {}}
+              style={{ backgroundColor: "red"}}
+            />
+          )}
+        </View>
       </View>
     </View>
   );
