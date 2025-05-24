@@ -6,14 +6,20 @@ import Message, { message } from "./message";
 import { supportMessage } from "@/app/(profile)/support";
 
 export interface chatAreaProps {
-    messages: supportMessage[];
+  messages: supportMessage[];
 }
-const SupportChatArea = ( { messages } : chatAreaProps) => {
+const SupportChatArea = ({ messages }: chatAreaProps) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.messagesContainer}>
         {messages.map((message: supportMessage) => {
-          return <Message key={"Message" + message.id} source={message.source} message={message.message} />;
+          return (
+            <Message
+              key={"Message" + message.id}
+              clientSent={message.clientSent}
+              message={message.message}
+            />
+          );
         })}
       </ScrollView>
       <MessageInputForm />

@@ -1,4 +1,4 @@
-import { StyleSheet, View} from "react-native";
+import { StyleSheet, View } from "react-native";
 import React, { useState } from "react";
 import ChatArea from "@/components/chatArea";
 import ChatUsersList from "@/components/chatUsersList";
@@ -32,21 +32,21 @@ const messages: message[] = [
     userID: "test",
     sideId: "1",
     message: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-    source: true,
+    clientSent: true,
   },
   {
     id: "2",
     userID: "test",
     sideId: "1",
     message: "aaaa",
-    source: false,
+    clientSent: false,
   },
   {
     id: "3",
     userID: "test",
     sideId: "1",
     message: "aaaa",
-    source: false,
+    clientSent: false,
   },
 ];
 
@@ -58,17 +58,16 @@ const Chat = () => {
   const [chatsHidden, setChatsHidden] = useState<boolean>(false);
 
   return (
-    <MessageContext.Provider value={{user: activeUser, setChatUser: setActiveUser}}>
+    <MessageContext.Provider
+      value={{ user: activeUser, setChatUser: setActiveUser }}
+    >
       <View style={styles.container}>
         <View>
           <ToggleUsersList
             setChatsHidden={setChatsHidden}
             chatsHidden={chatsHidden}
           />
-          <ChatUsersList
-            users={users}
-            chatsHidden={chatsHidden}
-          />
+          <ChatUsersList users={users} chatsHidden={chatsHidden} />
         </View>
         <ChatArea messages={messages} />
       </View>

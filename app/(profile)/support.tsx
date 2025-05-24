@@ -15,22 +15,22 @@ const messages: supportMessage[] = [
     id: "1",
     userID: "test",
     message: "abc",
-    source: true,
-    sideId: "abc"
+    clientSent: true,
+    sideId: "abc",
   },
   {
     id: "2",
     userID: "test",
     message: "aaaaaaa",
-    source: false,
-    sideId: "abc"
+    clientSent: false,
+    sideId: "abc",
   },
   {
     id: "3",
     userID: "test",
     message: "aaaaaaaaaaaaaaaa",
-    source: true,
-    sideId: "abc"
+    clientSent: true,
+    sideId: "abc",
   },
 ];
 

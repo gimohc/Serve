@@ -18,7 +18,7 @@ const ChatArea = ({ messages }: chatAreaProps) => {
             <Message
               key={"Message" + message.id}
               message={message.message}
-              source={message.source}
+              clientSent={message.clientSent}
               sideId={message.sideId}
             />
           );

@@ -12,21 +12,20 @@ export interface message extends messageProps {
 
 export interface messageProps {
   message: string;
-  source: boolean; // true for client sent / false for provider sent
+  clientSent: boolean; // true for client sent / false for provider sent
   sideId: string;
 }
 
-const Message = ({ message, source }: messageProps) => {
+const Message = ({ message, clientSent }: messageProps) => {
   const { user } = useContext(AuthContext);
   const messageContext = useContext(MessageContext);
 
   return (
     <>
-      <Text style={!source && { alignSelf: "flex-end", marginVertical: 4 }}>
-        {" "}
-        {source ? user?.fullName : messageContext?.user.name}{" "}
+      <Text style={!clientSent && { alignSelf: "flex-end", marginVertical: 4 }}>
+        {clientSent ? user?.fullName : messageContext?.user.name}
       </Text>
-      <View style={[styles.container, !source && styles.storeSent]}>
+      <View style={[styles.container, !clientSent && styles.storeSent]}>
         <Text style={styles.messageText}> {message} </Text>
       </View>
     </>
