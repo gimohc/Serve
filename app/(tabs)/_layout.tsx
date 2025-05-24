@@ -1,12 +1,17 @@
-import { Tabs } from "expo-router";
+import { router, Tabs } from "expo-router";
 import { Text, StyleSheet } from "react-native";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { images } from "@/constants/icons";
 import TabBarIcon from "@/components/tabBarIcon";
 import { colors } from "@/constants/colors";
 import Header from "@/components/header";
+import { AuthContext } from "@/contexts/authContext";
 
 const TabsLayout = () => {
+  const {user} = useContext(AuthContext);
+  useEffect(() => {
+    if(user == null) router.replace("/(auth)/login")
+  })
   return (
     <>
       <Header />

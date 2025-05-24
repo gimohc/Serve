@@ -1,6 +1,5 @@
-import { StyleSheet, Text, View, Image, ViewStyle } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { images } from "@/constants/icons";
 import { colors } from "@/constants/colors";
 import RateButton from "./rateButton";
 import RatingContainer from "./ratingContainer";
@@ -10,7 +9,7 @@ import CustomButton from "./button";
 export interface HistoryEntryProps {
   id: string;
   status: string;
-  date: Date;
+  date: string;
   serviceType: string;
   subType: string;
   clientId: string;
@@ -18,6 +17,7 @@ export interface HistoryEntryProps {
   rating: number;
   rated: boolean;
   feedback?: string;
+  finalPrice: number;
 }
 
 const getColor = (status: string): { color: string } => {
@@ -33,7 +33,6 @@ const getColor = (status: string): { color: string } => {
   }
 };
 const HistoryEntry = (props: HistoryEntryProps) => {
-  const fullDate = `${props.date.getDate()}/${props.date.getUTCMonth()}/${props.date.getFullYear()}`;
   return (
     <View style={styles.container}>
       <View style={styles.line}>
@@ -44,9 +43,7 @@ const HistoryEntry = (props: HistoryEntryProps) => {
         </Text>
       </View>
       <View style={styles.line}>
-        <Text
-          style={styles.text}
-        >{`${props.date.getHours()}:${props.date.getMinutes()} -- ${fullDate}`}</Text>
+        <Text style={styles.text}>{props.date}</Text>
         <Text
           style={[styles.text, { textAlign: "center" }, getColor(props.status)]}
         >
@@ -57,7 +54,7 @@ const HistoryEntry = (props: HistoryEntryProps) => {
         <Text style={[styles.text, { flex: 1 }]}>
           Provider: {props.providerId}
         </Text>
-        <View style={{flex:1}}>
+        <View style={{ flex: 1 }}>
           {props.status == "COMPLETE" &&
             (props.rated ? (
               <RatingContainer
@@ -73,7 +70,7 @@ const HistoryEntry = (props: HistoryEntryProps) => {
             <CustomButton
               title="Cancel"
               onPress={() => {}}
-              style={{ backgroundColor: "red"}}
+              style={{ backgroundColor: "red" }}
             />
           )}
         </View>
