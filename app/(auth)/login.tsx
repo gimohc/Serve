@@ -2,6 +2,7 @@ import CustomButton from "@/components/button";
 import Input from "@/components/input";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import PressableText from "@/components/pressableText";
+import StayLogged from "@/components/stayLogged";
 import { colors } from "@/constants/colors";
 import { router } from "expo-router";
 import React, { useState } from "react";
@@ -10,6 +11,7 @@ import { View, StyleSheet, Text } from "react-native";
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [stayLogged, setStayLogged] = useState<boolean>(false);
 
   return (
     <>
@@ -24,7 +26,13 @@ function Login() {
           keyboardType="phone-pad"
           placeholder="7XXXXXXXX"
         />
-        <Input placeholder="Enter your Password" title="Password" value={password} setValue={setPassword} />
+        <Input
+          placeholder="Enter your Password"
+          title="Password"
+          value={password}
+          setValue={setPassword}
+        />
+        <StayLogged stayLogged={stayLogged} setStayLogged={setStayLogged}/>
         <CustomButton title="Log in" style={styles.button} onPress={() => {}} />
 
         <PressableText text="Don't have an account?" route="./register" />
