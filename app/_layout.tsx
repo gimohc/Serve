@@ -17,10 +17,10 @@ export interface user {
 }
 export interface serviceProvider extends chatUser {
   type: string;
-  subTypes: string[];
+  subType: string[];
   email?: string;
   phoneNumber?: string;
-  logo: string;
+  businessLogo: string;
   address: string;
   rating: number;
 }

@@ -12,47 +12,47 @@ import DropDownList from "@/components/dropDownList";
 const providers: serviceProvider[] = [
   {
     type: "Gardening",
-    subTypes: ["Planting"],
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    subType: ["Planting"],
+    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 3,
-    apiID: 1,
+    id: 1,
     name: "Store 2",
   },
   {
     type: "Gardening",
-    subTypes: ["Planting"],
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    subType: ["Planting"],
+    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 4,
-    apiID: 2,
+    id: 2,
     name: "Store 3",
   },
   {
     type: "Gardening",
-    subTypes: ["Planting"],
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    subType: ["Planting"],
+    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 1,
-    apiID: 3,
+    id: 3,
     name: "Store 4",
   },
   {
     type: "Gardening",
-    subTypes: ["Planting"],
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    subType: ["Planting"],
+    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 2,
-    apiID: 4,
+    id: 4,
     name: "Store 1",
   },
   {
     type: "Gardening",
-    subTypes: ["Planting"],
-    logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    subType: ["Upgrading"],
+    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 5,
-    apiID: 5,
+    id: 452,
     name: "Store 6",
   },
 ];
@@ -64,27 +64,25 @@ const sorting: { [key: string]: string } = {
 };
 const Stores = () => {
   const [search, setSearch] = useState<string>("");
-  const [orderBy, setOrderBy] = useState<string>("None"); 
+  const [orderBy, setOrderBy] = useState<string>("None");
 
   let providersList = providers;
   useEffect(() => {
     providersList = providers;
-  }, [providers]) // assign retrieved list
+  }, [providers]); // assign retrieved list
 
   // search query
-  let displayedProvidersList = providersList.filter((entry) => entry.name.toLowerCase().includes(search.toLowerCase()));
+  let displayedProvidersList = providersList.filter((entry) =>
+    entry.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   // sorting
-  displayedProvidersList = [...displayedProvidersList].sort((a,b) => {
-    if(orderBy == "A-Z")
-      return a.name.localeCompare(b.name);
-    else if(orderBy == "Z-A")
-      return b.name.localeCompare(a.name);
-    else if(orderBy == "Rating") 
-      return b.rating - a.rating;
+  displayedProvidersList = [...displayedProvidersList].sort((a, b) => {
+    if (orderBy == "A-Z") return a.name.localeCompare(b.name);
+    else if (orderBy == "Z-A") return b.name.localeCompare(a.name);
+    else if (orderBy == "Rating") return b.rating - a.rating;
     return 0;
-  }) 
-
+  });
 
   const { id } = useLocalSearchParams();
   return (
@@ -97,20 +95,18 @@ const Stores = () => {
           placeholder="Search"
           value={search}
           setValue={setSearch}
-          style={{flex:1}}
+          style={{ flex: 1 }}
         />
         <DropDownList
           items={sorting}
           title=""
           value={orderBy}
           setValue={setOrderBy}
-          textStyle={{fontSize:12}}
+          textStyle={{ fontSize: 12 }}
         />
       </View>
       {displayedProvidersList.map((entry) => {
-        return (
-          <StoreEntry key={entry.apiID + "Store Entry"} provider={entry} />
-        );
+        return <StoreEntry key={entry.id + "Store Entry"} provider={entry} />;
       })}
     </View>
   );

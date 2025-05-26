@@ -4,7 +4,7 @@ import { colors } from "@/constants/colors";
 import { MessageContext } from "@/contexts/messageContext";
 
 export interface chatUser {
-  apiID: number;
+  id: number;
   name: string;
 }
 interface chatUserProps {

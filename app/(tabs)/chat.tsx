@@ -9,21 +9,21 @@ import { chatUser } from "@/components/chatUser";
 import { MessageContext } from "@/contexts/messageContext";
 
 const users: chatUser[] = [
-  { apiID: 1, name: "Store 1" },
-  { apiID: 2, name: "Store 2" },
-  { apiID: 3, name: "Store 4" },
-  { apiID: 4, name: "Store 5" },
-  { apiID: 5, name: "Store 6" },
-  { apiID: 6, name: "Store 7" },
-  { apiID: 7, name: "Store 8" },
-  { apiID: 8, name: "Store 9" },
-  { apiID: 9, name: "Store 10" },
-  { apiID: 10, name: "Store 11" },
-  { apiID: 11, name: "Store 12" },
-  { apiID: 12, name: "Store 13" },
-  { apiID: 13, name: "Store 14" },
-  { apiID: 14, name: "Store 15" },
-  { apiID: 15, name: "Store 16" },
+  { id: 1, name: "Store 1" },
+  { id: 2, name: "Store 2" },
+  { id: 3, name: "Store 4" },
+  { id: 4, name: "Store 5" },
+  { id: 5, name: "Store 6" },
+  { id: 6, name: "Store 7" },
+  { id: 7, name: "Store 8" },
+  { id: 8, name: "Store 9" },
+  { id: 9, name: "Store 10" },
+  { id: 10, name: "Store 11" },
+  { id: 11, name: "Store 12" },
+  { id: 12, name: "Store 13" },
+  { id: 13, name: "Store 14" },
+  { id: 14, name: "Store 15" },
+  { id: 15, name: "Store 16" },
 ];
 
 const messages: message[] = [
@@ -52,7 +52,7 @@ const messages: message[] = [
 
 const Chat = () => {
   const [activeUser, setActiveUser] = useState<chatUser>({
-    apiID: 1,
+    id: 1,
     name: "test",
   });
   const [chatsHidden, setChatsHidden] = useState<boolean>(false);

@@ -11,7 +11,12 @@ interface StoreEntryProps {
 
 const StoreEntry = ({ provider }: StoreEntryProps) => {
   return (
-    <Pressable style={styles.container} onPress={() => {router.replace(`/store/${provider.apiID}`)}}>
+    <Pressable
+      style={styles.container}
+      onPress={() => {
+        router.replace(`/store/${provider.id}`);
+      }}
+    >
       <View style={styles.line}>
         <Image style={styles.logo} source={{ uri: provider.logo }} />
         <Text style={[styles.name, { fontSize: 23 }]}> {provider.name} </Text>
