@@ -3,15 +3,13 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Image,
-  Pressable,
   TextInput,
 } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { useState } from "react";
-import { images } from "@/constants/icons";
 import RatingContainer from "@/components/ratingContainer";
 import { colors } from "@/constants/colors";
+import MainMenuArrow from "@/components/mainMenuArrow";
 
 // orderID={`${props.id} - ${props.provider} - ${props.serviceType}`} without spaces is what this is getting
 
@@ -23,17 +21,18 @@ export default function Rating() {
 
   const string = id.toString();
   const parameters = string.split("-");
-  // parameters[0] is the orderID
-  // parameters[1] is the provider
+  // parameters[0] is the orderID number
+  // parameters[1] is the provider number
   // parameters[2] is the service type user received
 
   return (
     <View style={styles.page}>
+      <MainMenuArrow/>
       <Text style={styles.header}>Order Rating</Text>
 
       <View style={styles.container}>
         <Text style={[styles.center, { fontSize: 30 }]}>
-          {parameters[1]} / {parameters[2]}
+          {parseInt(parameters[1])} / {parameters[2]}
         </Text>
         <Text style={[styles.center, { fontSize: 23 }]}>Thanks for Rating</Text>
         <RatingContainer setRating={setRating} rating={rating} />

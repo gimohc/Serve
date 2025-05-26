@@ -3,11 +3,11 @@ import React, { useState } from "react";
 import HistoryEntry, { HistoryEntryProps } from "@/components/historyEntry";
 import MainMenuArrow from "@/components/mainMenuArrow";
 
-const status = {
-  COMPLETE: "COMPLETE",
-  PENDING: "PENDING",
-  CANCELLED: "CANCELLED",
-  ACCEPTED: "ACCEPTED",
+export const status = {
+  COMPLETE: "Finished",
+  PENDING: "Pending",
+  CANCELLED: "Cancelled",
+  ACCEPTED: "Accepted",
 };
 const historyEntries: HistoryEntryProps[] = [
   {

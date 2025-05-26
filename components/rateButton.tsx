@@ -4,10 +4,10 @@ import { colors } from "@/constants/colors";
 import { router } from "expo-router";
 
 interface RateButtonProps {
-  orderID: number;
+  orderRoute: string;
 }
 
-const RateButton = ({ orderID }: RateButtonProps) => {
+const RateButton = ({ orderRoute }: RateButtonProps) => {
   const [bgColor, setBgColor] = useState(colors.DARKER_PRIMARY);
   return (
     <Pressable
@@ -19,7 +19,7 @@ const RateButton = ({ orderID }: RateButtonProps) => {
         setBgColor(colors.DARKER_PRIMARY);
       }}
       onPress={() => {
-        router.replace(`./rating/${orderID}`);
+        router.replace(`./rating/${orderRoute}`);
       }}
     >
       <View>

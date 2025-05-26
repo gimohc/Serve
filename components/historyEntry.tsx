@@ -4,6 +4,7 @@ import { colors } from "@/constants/colors";
 import RateButton from "./rateButton";
 import RatingContainer from "./ratingContainer";
 import CustomButton from "./button";
+import { status } from "@/app/(services)/history";
 
 // accepted/pending -> cancelled
 export interface HistoryEntryProps {
@@ -20,13 +21,13 @@ export interface HistoryEntryProps {
   finalPrice: number;
 }
 
-const getColor = (status: string): { color: string } => {
-  switch (status) {
-    case "ACCEPTED":
+const getColor = (statusString: string): { color: string } => {
+  switch (statusString) {
+    case status.ACCEPTED:
       return { color: "magenta" };
-    case "PENDING":
+    case status.PENDING:
       return { color: "orange" };
-    case "CANCELLED":
+    case status.CANCELLED:
       return { color: "red" };
     default:
       return { color: "lime" };
@@ -55,7 +56,7 @@ const HistoryEntry = (props: HistoryEntryProps) => {
           Provider: {props.providerId}
         </Text>
         <View style={{ flex: 1 }}>
-          {props.status == "COMPLETE" &&
+          {props.status == status.COMPLETE &&
             (props.rated ? (
               <RatingContainer
                 style={styles.ratingIcon}
@@ -63,10 +64,10 @@ const HistoryEntry = (props: HistoryEntryProps) => {
               />
             ) : (
               <RateButton
-                orderID={props.id}
+                orderRoute={`${props.id}-${props.providerId}-${props.serviceType}`}
               />
             ))}
-          {(props.status == "PENDING" || props.status == "ACCEPTED") && (
+          {(props.status == status.PENDING || props.status == status.ACCEPTED) && (
             <CustomButton
               title="Cancel"
               onPress={() => {}}
