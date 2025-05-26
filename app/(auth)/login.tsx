@@ -4,15 +4,33 @@ import MainMenuArrow from "@/components/mainMenuArrow";
 import PressableText from "@/components/pressableText";
 import StayLogged from "@/components/stayLogged";
 import { colors } from "@/constants/colors";
+import { AuthContext } from "@/contexts/authContext";
+import axios from "axios";
 import { router } from "expo-router";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 
 function Login() {
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [stayLogged, setStayLogged] = useState<boolean>(false);
+  const { login } = useContext(AuthContext);
 
+  const validateLogin = async () => {
+    try {
+      const response = await axios.get(
+        `http://10.0.2.2:8080/ClientController/login/${phoneNumber}/${password}`
+      );
+      const data = response.data;
+      if (data != null) {
+        login(data);
+        router.replace("/");
+      } else window.alert("Invalid login");
+    } catch (error) {
+      console.log(error);
+      window.alert("Invalid login/ unable to retrieve login details");
+    }
+  };
   return (
     <>
       <MainMenuArrow />
@@ -32,8 +50,14 @@ function Login() {
           value={password}
           setValue={setPassword}
         />
-        <StayLogged stayLogged={stayLogged} setStayLogged={setStayLogged}/>
-        <CustomButton title="Log in" style={styles.button} onPress={() => {}} />
+        <StayLogged stayLogged={stayLogged} setStayLogged={setStayLogged} />
+        <CustomButton
+          title="Log in"
+          style={styles.button}
+          onPress={() => {
+            validateLogin();
+          }}
+        />
 
         <PressableText text="Don't have an account?" route="./register" />
         <PressableText text="Forgot password?" route="/forgotPassword" />

@@ -8,6 +8,7 @@ import { message } from "@/components/message";
 import { chatUser } from "@/components/chatUser";
 import { MessageContext } from "@/contexts/messageContext";
 
+/*
 const users: chatUser[] = [
   { id: 1, name: "Store 1" },
   { id: 2, name: "Store 2" },
@@ -49,13 +50,23 @@ const messages: message[] = [
     clientSent: false,
   },
 ];
+*/
 
+//const getContactsByUserId = async () => {
+
+//}
+//const getMessagesBy
 const Chat = () => {
   const [activeUser, setActiveUser] = useState<chatUser>({
     id: 1,
     name: "test",
   });
   const [chatsHidden, setChatsHidden] = useState<boolean>(false);
+
+  const [contacts, setContacts] = useState<chatUser[]>();
+
+  const [messagesList, setMessagesList] = useState<message[]>();
+
 
   return (
     <MessageContext.Provider
@@ -67,9 +78,9 @@ const Chat = () => {
             setChatsHidden={setChatsHidden}
             chatsHidden={chatsHidden}
           />
-          <ChatUsersList users={users} chatsHidden={chatsHidden} />
+          <ChatUsersList users={contacts} chatsHidden={chatsHidden} />
         </View>
-        <ChatArea messages={messages} />
+        <ChatArea messages={messagesList} />
       </View>
     </MessageContext.Provider>
   );
