@@ -13,13 +13,13 @@ interface TabIconProps {
   style?: ImageStyle;
 }
 
-const TabBarIcon = ({ source, focused, style }: TabIconProps) => {
+const TabBarIcon = ({ source, focused }: TabIconProps) => {
   return (
     <Image
       source={source}
       style={[
         styles.icon,
-        { tintColor: focused ? colors.WHITE : colors.UNSELECTED_TEXT_COLOR },
+        { tintColor: focused ? colors.WHITE : colors.LIGHT_GRAY },
       ]}
     />
   );

@@ -4,10 +4,12 @@ import DropDownList from "@/components/dropDownList";
 import Input from "@/components/input";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import PressableText from "@/components/pressableText";
+import { key } from "@/constants/API_KEY";
 import { colors } from "@/constants/colors";
 import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { DateType } from "react-native-ui-datepicker";
+import axios from "axios";
 
 export const genders: { [key: string]: boolean | null } = {
   "Select Gender": null,
@@ -16,20 +18,75 @@ export const genders: { [key: string]: boolean | null } = {
 };
 
 function Register() {
-  const [fullName, setFullName] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [gender, setGender] = useState<boolean | null>(null);
-  const [birthday, setBirthday] = useState<DateType>();
+  const [dateOfBirth, setDateOfBirth] = useState<DateType>();
+
+  const handleSubmit = async () => {
+    try {
+      if (
+        !name ||
+        !phoneNumber ||
+        !email ||
+        !dateOfBirth ||
+        !gender ||
+        !password
+      ) {
+        window.alert("Please fill in all required fields");
+        return;
+      }
+
+      // Make the POST request using Axios
+      const response = await axios.post(
+        "http://localhost:8080/students/verifyStudent",
+        {
+          name,
+          phoneNumber,
+          email,
+          dateOfBirth,
+          gender,
+          password,
+          stayLoggedInToken: "",
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true, 
+        }
+      );
+
+      window.alert(response.data.message || "Validation successful");
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          console.error("Server Error:", error.response.data);
+        } else if (error.request) {
+          console.error("Network Error:", error.request);
+        } else {
+          console.error("Error:", error.message);
+        }
+      } else {
+        console.error("An unexpected error occurred");
+      }
+    }
+  };
 
   return (
     <>
       <MainMenuArrow />
       <Text style={styles.header}> Register </Text>
       <View style={styles.container}>
-        <Input title="Full Name" placeholder="eg. John Doe" value={fullName} setValue={setFullName} />
+        <Input
+          title="Full Name"
+          placeholder="eg. John Doe"
+          value={name}
+          setValue={setName}
+        />
         <Input
           phone
           title="Phone Number"
@@ -50,8 +107,8 @@ function Register() {
           <DateInput
             style={styles.rowElement}
             title="Birthday"
-            value={birthday}
-            setValue={setBirthday}
+            value={dateOfBirth}
+            setValue={setDateOfBirth}
             placeholder="Select Birthday"
           />
           <DropDownList
@@ -79,7 +136,9 @@ function Register() {
         <CustomButton
           title="Register"
           style={styles.button}
-          onPress={() => {}}
+          onPress={() => {
+            handleSubmit();
+          }}
         />
         <PressableText text="Already Registered?" route="./login" />
       </View>
@@ -105,11 +164,10 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   header: {
-    marginHorizontal:"auto",
-    fontSize:22,
-    paddingTop:15,
-    fontWeight:"bold"
-  }
-  
+    marginHorizontal: "auto",
+    fontSize: 22,
+    paddingTop: 15,
+    fontWeight: "bold",
+  },
 });
 export default Register;

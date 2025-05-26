@@ -5,32 +5,32 @@ import { messageProps } from "@/components/message";
 import SupportChatArea from "@/components/supportChatArea";
 
 export interface supportMessage extends messageProps {
-  id: string;
-  userID: string;
+  id: number;
+  userID: number;
 
   // source is true for user sent false for support sent
 }
 const messages: supportMessage[] = [
   {
-    id: "1",
-    userID: "test",
+    id: 1,
+    userID: 1,
     message: "abc",
     clientSent: true,
-    sideId: "abc",
+    sideId: 1,
   },
   {
-    id: "2",
-    userID: "test",
+    id: 2,
+    userID: 2,
     message: "aaaaaaa",
     clientSent: false,
-    sideId: "abc",
+    sideId: 2,
   },
   {
-    id: "3",
-    userID: "test",
+    id: 3,
+    userID: 3,
     message: "aaaaaaaaaaaaaaaa",
     clientSent: true,
-    sideId: "abc",
+    sideId: 1,
   },
 ];
 

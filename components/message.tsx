@@ -5,15 +5,15 @@ import { AuthContext } from "@/contexts/authContext";
 import { MessageContext } from "@/contexts/messageContext";
 
 export interface message extends messageProps {
-  id: string;
-  userID: string;
-  sideId: string;
+  id: number;
+  userID: number;
+  sideId: number;
 }
 
 export interface messageProps {
   message: string;
   clientSent: boolean; // true for client sent / false for provider sent
-  sideId: string;
+  sideId: number;
 }
 
 const Message = ({ message, clientSent }: messageProps) => {

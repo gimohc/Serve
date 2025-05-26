@@ -1,13 +1,11 @@
 import {
   StyleSheet,
-  Image,
   Text,
   Pressable,
   TextInput,
   View,
 } from "react-native";
 import React, { useState } from "react";
-import { images } from "@/constants/icons";
 import { colors } from "@/constants/colors";
 
 const MessageInputForm = () => {

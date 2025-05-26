@@ -1,4 +1,10 @@
-import { ImageSourcePropType, Pressable, StyleSheet, Text, Image } from "react-native";
+import {
+  ImageSourcePropType,
+  Pressable,
+  StyleSheet,
+  Text,
+  Image,
+} from "react-native";
 import React from "react";
 import { router } from "expo-router";
 import Seperator from "./seperator";
@@ -12,18 +18,27 @@ interface ProfileOptionProps {
   seperator?: true;
 }
 
-const ProfileOption = ({ text, onPress, route, color, source, seperator }: ProfileOptionProps) => {
+const ProfileOption = ({
+  text,
+  onPress,
+  route,
+  color,
+  source,
+  seperator,
+}: ProfileOptionProps) => {
   return (
     <>
-    <Pressable style={styles.container} onPress={() => {
-      if(onPress) 
-        onPress();
-      router.replace(`../${route}`);
-    }}>
-      <Image source={source} style={[styles.icon, { tintColor: color }]} />
-      <Text style={[styles.text, {color:color}]}> {text} </Text>
-    </Pressable>
-    { seperator && <Seperator style={{ width: "90%" }} /> }
+      <Pressable
+        style={styles.container}
+        onPress={() => {
+          if (onPress) onPress();
+          router.replace(`../${route}`);
+        }}
+      >
+        <Image source={source} style={[styles.icon, { tintColor: color }]} />
+        <Text style={[styles.text, { color: color }]}> {text} </Text>
+      </Pressable>
+      {seperator && <Seperator style={{ width: "90%" }} />}
     </>
   );
 };
@@ -35,15 +50,15 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     paddingLeft: 25,
     marginVertical: 7,
-    flexDirection:"row",
+    flexDirection: "row",
   },
   text: {
     fontWeight: "bold",
-    fontSize:16,
+    fontSize: 16,
   },
   icon: {
-    width:24,
-    height:24,
-    marginRight:15,
-  }
+    width: 24,
+    height: 24,
+    marginRight: 15,
+  },
 });

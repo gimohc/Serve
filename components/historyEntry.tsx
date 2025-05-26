@@ -7,13 +7,13 @@ import CustomButton from "./button";
 
 // accepted/pending -> cancelled
 export interface HistoryEntryProps {
-  id: string;
+  id: number;
   status: string;
   date: string;
   serviceType: string;
   subType: string;
-  clientId: string;
-  providerId: string;
+  clientId: number;
+  providerId: number;
   rating: number;
   rated: boolean;
   feedback?: string;
@@ -63,7 +63,7 @@ const HistoryEntry = (props: HistoryEntryProps) => {
               />
             ) : (
               <RateButton
-                orderID={`${props.id}-${props.providerId}-${props.serviceType}`}
+                orderID={props.id}
               />
             ))}
           {(props.status == "PENDING" || props.status == "ACCEPTED") && (

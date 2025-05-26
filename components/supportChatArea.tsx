@@ -18,6 +18,7 @@ const SupportChatArea = ({ messages }: chatAreaProps) => {
               key={"Message" + message.id}
               clientSent={message.clientSent}
               message={message.message}
+              sideId={message.sideId}
             />
           );
         })}

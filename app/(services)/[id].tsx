@@ -16,7 +16,7 @@ const providers: serviceProvider[] = [
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 3,
-    apiID: "0",
+    apiID: 1,
     name: "Store 2",
   },
   {
@@ -25,7 +25,7 @@ const providers: serviceProvider[] = [
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 4,
-    apiID: "1",
+    apiID: 2,
     name: "Store 3",
   },
   {
@@ -34,7 +34,7 @@ const providers: serviceProvider[] = [
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 1,
-    apiID: "2",
+    apiID: 3,
     name: "Store 4",
   },
   {
@@ -43,7 +43,7 @@ const providers: serviceProvider[] = [
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 2,
-    apiID: "3",
+    apiID: 4,
     name: "Store 1",
   },
   {
@@ -52,7 +52,7 @@ const providers: serviceProvider[] = [
     logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 5,
-    apiID: "4",
+    apiID: 5,
     name: "Store 6",
   },
 ];
