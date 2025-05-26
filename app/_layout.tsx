@@ -8,6 +8,7 @@ import { useState } from "react";
 import { ImageSourcePropType, StatusBar } from "react-native";
 
 export interface user {
+  id: number;
   fullName: string;
   phoneNumber: string;
   email: string | null;
@@ -25,6 +26,7 @@ export interface serviceProvider extends chatUser {
 }
 export default function RootLayout() {
   const [user, setUser] = useState<user | null>({
+    id:1,
     fullName: "motasem",
     phoneNumber: "+962700000000",
     email: "test@email.com",

@@ -1,25 +1,31 @@
 import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { colors } from "@/constants/colors";
 import RateButton from "./rateButton";
 import RatingContainer from "./ratingContainer";
 import CustomButton from "./button";
 import { status } from "@/app/(services)/history";
+import axios from "axios";
+import { getProviderNameById } from "@/app/(services)/rating/[id]";
 
 // accepted/pending -> cancelled
 export interface HistoryEntryProps {
-  id: number;
+  orderId: number;
   status: string;
   date: string;
   serviceType: string;
   subType: string;
-  clientId: number;
+  userId: number;
   providerId: number;
   rating: number;
   rated: boolean;
   feedback?: string;
   finalPrice: number;
 }
+
+export const cancelOrder = async (id: string | number) => {
+  axios.put("http:/10.0.2.2:8080/historyService/cancelOrderByOrderId/" + id);
+};
 
 const getColor = (statusString: string): { color: string } => {
   switch (statusString) {
@@ -34,10 +40,18 @@ const getColor = (statusString: string): { color: string } => {
   }
 };
 const HistoryEntry = (props: HistoryEntryProps) => {
+  const [name, setName] = useState("" + props.providerId);
+  const fetchProviderNameById = async () => {
+    const name = await getProviderNameById(props.providerId);
+    setName(name);
+  };
+  useEffect(() => {
+    fetchProviderNameById();
+  });
   return (
     <View style={styles.container}>
       <View style={styles.line}>
-        <Text style={styles.text}>Order ID: {props.id}</Text>
+        <Text style={styles.text}>Order ID: {props.orderId}</Text>
 
         <Text style={styles.text}>
           Service: {`${props.serviceType}/${props.subType}`}
@@ -52,9 +66,7 @@ const HistoryEntry = (props: HistoryEntryProps) => {
         </Text>
       </View>
       <View style={styles.line}>
-        <Text style={[styles.text, { flex: 1 }]}>
-          Provider: {props.providerId}
-        </Text>
+        <Text style={[styles.text, { flex: 1 }]}>Provider: {name}</Text>
         <View style={{ flex: 1 }}>
           {props.status == status.COMPLETE &&
             (props.rated ? (
@@ -64,13 +76,16 @@ const HistoryEntry = (props: HistoryEntryProps) => {
               />
             ) : (
               <RateButton
-                orderRoute={`${props.id}-${props.providerId}-${props.serviceType}`}
+                orderRoute={`${props.orderId}-${props.providerId}-${props.serviceType}`}
               />
             ))}
-          {(props.status == status.PENDING || props.status == status.ACCEPTED) && (
+          {(props.status == status.PENDING ||
+            props.status == status.ACCEPTED) && (
             <CustomButton
               title="Cancel"
-              onPress={() => {}}
+              onPress={() => {
+                cancelOrder(props.orderId);
+              }}
               style={{ backgroundColor: "red" }}
             />
           )}

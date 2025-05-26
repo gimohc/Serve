@@ -25,6 +25,8 @@ function Register() {
   const [email, setEmail] = useState<string>("");
   const [gender, setGender] = useState<boolean | null>(null);
   const [dateOfBirth, setDateOfBirth] = useState<DateType>();
+  const stayLoggedInToken = '';
+
 
   const handleSubmit = async () => {
     try {
@@ -33,31 +35,23 @@ function Register() {
         !phoneNumber ||
         !email ||
         !dateOfBirth ||
-        !gender ||
         !password
       ) {
         window.alert("Please fill in all required fields");
         return;
       }
 
-      // Make the POST request using Axios
       const response = await axios.post(
-        "http://localhost:8080/students/verifyStudent",
+        "http://10.0.2.2:8080/ClientController/create",
         {
           name,
           phoneNumber,
           email,
-          dateOfBirth,
-          gender,
+          dateOfBirth : dateOfBirth.toString(),
+          gender: gender?"Male":"Female",
           password,
-          stayLoggedInToken: "",
+          stayLoggedInToken
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          withCredentials: true, 
-        }
       );
 
       window.alert(response.data.message || "Validation successful");

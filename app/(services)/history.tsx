@@ -1,7 +1,10 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import HistoryEntry, { HistoryEntryProps } from "@/components/historyEntry";
 import MainMenuArrow from "@/components/mainMenuArrow";
+import axios from "axios";
+import { AuthContext } from "@/contexts/authContext";
+import { FullWindowOverlay } from "react-native-screens";
 
 export const status = {
   COMPLETE: "Finished",
@@ -9,15 +12,15 @@ export const status = {
   CANCELLED: "Cancelled",
   ACCEPTED: "Accepted",
 };
-const historyEntries: HistoryEntryProps[] = [
+/*let historyEntries: HistoryEntryProps[] = [
   {
     id: 1,
     date: "Wed May 05 2025",
     serviceType: "Cleaning",
-    providerId: 1,
+    providerId: 253,
     rating: 0,
     rated: true,
-    status: status.COMPLETE,
+    status: status.PENDING,
     subType: "Subtype",
     clientId: 1,
     finalPrice: -1,
@@ -26,7 +29,7 @@ const historyEntries: HistoryEntryProps[] = [
     id: 2,
     date: "Wed May 05 2025",
     serviceType: "Cleaning",
-    providerId: 2,
+    providerId: 253,
     rating: 1,
     rated: false,
     status: status.CANCELLED,
@@ -38,7 +41,7 @@ const historyEntries: HistoryEntryProps[] = [
     id: 3,
     date: "Wed May 05 2025",
     serviceType: "Cleaning",
-    providerId: 3,
+    providerId: 253,
     rating: 4,
     rated: true,
     status: status.ACCEPTED,
@@ -50,7 +53,7 @@ const historyEntries: HistoryEntryProps[] = [
     id: 4,
     date: "Wed May 05 2025",
     serviceType: "Cleaning",
-    providerId: 4,
+    providerId: 253,
     rating: 4,
     rated: false,
     status: status.COMPLETE,
@@ -62,7 +65,7 @@ const historyEntries: HistoryEntryProps[] = [
     id: 5,
     date: "Wed May 05 2025",
     serviceType: "Cleaning",
-    providerId: 5,
+    providerId: 253,
     rating: 5,
     rated: true,
     status: status.PENDING,
@@ -74,7 +77,7 @@ const historyEntries: HistoryEntryProps[] = [
     id: 6,
     date: "Wed May 05 2025",
     serviceType: "Cleaning",
-    providerId: 6,
+    providerId: 253,
     rating: 1,
     rated: true,
     status: status.COMPLETE,
@@ -86,7 +89,7 @@ const historyEntries: HistoryEntryProps[] = [
     id: 7,
     date: "Wed May 05 2025",
     serviceType: "Cleaning",
-    providerId: 2,
+    providerId: 253,
     rating: 4,
     rated: true,
     status: status.COMPLETE,
@@ -94,16 +97,48 @@ const historyEntries: HistoryEntryProps[] = [
     clientId: 2,
     finalPrice: 150,
   },
+  {
+    id: 252,
+    date: "Wed May 05 2025",
+    serviceType: "Cleaning",
+    providerId: 253,
+    rating: 4,
+    rated: true,
+    status: status.PENDING,
+    subType: "Subtype",
+    clientId: 2,
+    finalPrice: 150,
+  },
 ];
+*/
 const History = () => {
+  const [historyEntries, setHistoryEntries] = useState<HistoryEntryProps[]>();
+  const userId = useContext(AuthContext);
+  useEffect(() => {
+    const fetchHistoryEntries = async () => {
+      try {
+        const response = await axios.get(
+          "http://10.0.2.2:8080/historyService/getHistoryByUserId/" +
+            userId.user?.id
+        );
+        const data = response.data;
+        setHistoryEntries(data);
+      } catch (error) {
+        console.error("Unable to fetch user history");
+        window.alert("Unable to fetch user history");
+      }
+    };
+    fetchHistoryEntries();
+  }, []);
   return (
     <>
       <MainMenuArrow />
       <Text style={styles.headerText}> Order History </Text>
       <ScrollView style={styles.container}>
-        {historyEntries.map((order) => {
-          return <HistoryEntry key={"Service" + order.id} {...order} />;
+        {historyEntries?.map((order) => {
+          return <HistoryEntry key={"Service" + order.orderId} {...order} />;
         })}
+        <Text>{historyEntries?.length == 0 ? "No orders placed yet" : ""}</Text>
       </ScrollView>
     </>
   );
