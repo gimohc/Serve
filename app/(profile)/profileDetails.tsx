@@ -64,11 +64,6 @@ function ProfileDetails() {
               title="Gender"
             />
           </View>
-          <CustomButton
-            title="Update Information"
-            style={styles.button}
-            onPress={() => {}}
-          />
         </View>
       </>
     );
