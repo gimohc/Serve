@@ -6,14 +6,17 @@ import StoreEntry from "@/components/StoreEntry";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import Input from "@/components/input";
 import DropDownList from "@/components/dropDownList";
+import axios from "axios";
+import { APIAddress } from "@/constants/API_KEY";
 
 // local params return the type of sub service for backend request of available stores
-
+/*
 const providers: serviceProvider[] = [
   {
     type: "Gardening",
     subType: ["Planting"],
-    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    businessLogo:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 3,
     id: 1,
@@ -22,7 +25,8 @@ const providers: serviceProvider[] = [
   {
     type: "Gardening",
     subType: ["Planting"],
-    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    businessLogo:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 4,
     id: 2,
@@ -31,7 +35,8 @@ const providers: serviceProvider[] = [
   {
     type: "Gardening",
     subType: ["Planting"],
-    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    businessLogo:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 1,
     id: 3,
@@ -40,7 +45,8 @@ const providers: serviceProvider[] = [
   {
     type: "Gardening",
     subType: ["Planting"],
-    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    businessLogo:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 2,
     id: 4,
@@ -49,13 +55,15 @@ const providers: serviceProvider[] = [
   {
     type: "Gardening",
     subType: ["Upgrading"],
-    businessLogo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
+    businessLogo:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS07eoWd2XKGJmiyNkO0kNa7JsoMpv3Ds8KlA&s",
     address: "Amman, Al Waha Circle",
     rating: 5,
     id: 452,
     name: "Store 6",
   },
-];
+];*/
+
 const sorting: { [key: string]: string } = {
   "Not sorted": "None",
   "Sort/name (A-Z)": "A-Z",
@@ -65,49 +73,74 @@ const sorting: { [key: string]: string } = {
 const Stores = () => {
   const [search, setSearch] = useState<string>("");
   const [orderBy, setOrderBy] = useState<string>("None");
+  const [providers, setProviders] = useState<serviceProvider[] | null>(null);
 
-  let providersList = providers;
+  //subservice name
+  const { id } = useLocalSearchParams();
+
   useEffect(() => {
-    providersList = providers;
-  }, [providers]); // assign retrieved list
+    const fetchProvidersListBySubService = async () => {
+      try {
+        const response = await axios.get(
+          APIAddress+"/serviceProviders/subtype/"+id
+        );
+        const data = response.data;
+        setProviders(data);
+      } catch (error) {
+        console.error("Unable to fetch providers list" + error);
+        window.alert("Unable to fetch providers list" + error);
+      }
+    };
+    fetchProvidersListBySubService();
+  }, []); // assign retrieved list
 
   // search query
-  let displayedProvidersList = providersList.filter((entry) =>
-    entry.name.toLowerCase().includes(search.toLowerCase())
-  );
+  let displayedProvidersList;
+  if (providers != null) {
+    displayedProvidersList = providers.filter((entry) =>
+      entry.name.toLowerCase().includes(search.toLowerCase())
+    );
 
-  // sorting
-  displayedProvidersList = [...displayedProvidersList].sort((a, b) => {
-    if (orderBy == "A-Z") return a.name.localeCompare(b.name);
-    else if (orderBy == "Z-A") return b.name.localeCompare(a.name);
-    else if (orderBy == "Rating") return b.rating - a.rating;
-    return 0;
-  });
+    // sorting
+    displayedProvidersList = [...displayedProvidersList].sort((a, b) => {
+      if (orderBy == "A-Z") return a.name.localeCompare(b.name);
+      else if (orderBy == "Z-A") return b.name.localeCompare(a.name);
+      else if (orderBy == "Rating") return b.rating - a.rating;
+      return 0;
+    });
+  }
 
-  const { id } = useLocalSearchParams();
   return (
     <View>
       <MainMenuArrow />
-      <Text style={styles.pageTitle}>{id} Providers</Text>
-      <View style={{ flexDirection: "row", width: "100%" }}>
-        <Input
-          title=""
-          placeholder="Search"
-          value={search}
-          setValue={setSearch}
-          style={{ flex: 1 }}
-        />
-        <DropDownList
-          items={sorting}
-          title=""
-          value={orderBy}
-          setValue={setOrderBy}
-          textStyle={{ fontSize: 12 }}
-        />
-      </View>
-      {displayedProvidersList.map((entry) => {
-        return <StoreEntry key={entry.id + "Store Entry"} provider={entry} />;
-      })}
+      {displayedProvidersList != null ? (
+        <>
+          <Text style={styles.pageTitle}>{id} Providers</Text>
+          <View style={{ flexDirection: "row", width: "100%" }}>
+            <Input
+              title=""
+              placeholder="Search"
+              value={search}
+              setValue={setSearch}
+              style={{ flex: 1 }}
+            />
+            <DropDownList
+              items={sorting}
+              title=""
+              value={orderBy}
+              setValue={setOrderBy}
+              textStyle={{ fontSize: 12 }}
+            />
+          </View>
+          {displayedProvidersList.map((entry) => {
+            return (
+              <StoreEntry key={entry.id + "Store Entry"} provider={entry} />
+            );
+          })}
+        </>
+      ) : (
+        <Text>No records found</Text>
+      )}
     </View>
   );
 };
