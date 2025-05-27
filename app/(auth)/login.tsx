@@ -3,6 +3,7 @@ import Input from "@/components/input";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import PressableText from "@/components/pressableText";
 import StayLogged from "@/components/stayLogged";
+import { APIAddress } from "@/constants/API_KEY";
 import { colors } from "@/constants/colors";
 import { AuthContext } from "@/contexts/authContext";
 import axios from "axios";
@@ -19,7 +20,7 @@ function Login() {
   const validateLogin = async () => {
     try {
       const response = await axios.get(
-        `http://10.0.2.2:8080/ClientController/login/${phoneNumber}/${password}`
+        `${APIAddress}/ClientController/login/${phoneNumber}/${password}`
       );
       const data = response.data;
       if (data != null) {
