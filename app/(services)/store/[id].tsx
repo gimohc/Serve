@@ -13,6 +13,7 @@ import { colors } from "@/constants/colors";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import { sub } from "@/constants/subServices";
 import axios from "axios";
+import { APIAddress } from "@/constants/API_KEY";
 
 // local params return what this specific store provides
 
@@ -20,7 +21,7 @@ export const getProviderObjectById = async (id: string | number) => {
   let data: serviceProvider | null = null;
   try {
     const response = await axios.get(
-      "http://10.0.2.2:8080/serviceProviders/getServiceProviderById/" + id
+      APIAddress + "/serviceProviders/getServiceProviderById/" + id
     );
     data = response.data;
   } catch (error) {

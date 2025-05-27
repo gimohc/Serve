@@ -4,7 +4,7 @@ import DropDownList from "@/components/dropDownList";
 import Input from "@/components/input";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import PressableText from "@/components/pressableText";
-import { key } from "@/constants/API_KEY";
+import { APIAddress, key } from "@/constants/API_KEY";
 import { colors } from "@/constants/colors";
 import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
@@ -42,7 +42,7 @@ function Register() {
       }
 
       const response = await axios.post(
-        "http://10.0.2.2:8080/ClientController/create",
+        APIAddress+"/ClientController/create",
         {
           name,
           phoneNumber,

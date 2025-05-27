@@ -10,6 +10,7 @@ import CustomButton from "@/components/button";
 import { colors } from "@/constants/colors";
 import axios from "axios";
 import { AuthContext } from "@/contexts/authContext";
+import { APIAddress } from "@/constants/API_KEY";
 
 const getSubServiceByName = (string: string) => {
   return sub.filter((e) => e.subService == string).at(0);
@@ -24,7 +25,7 @@ const ConfirmOrder = () => {
   const createOrder = async () => {
     try {
       const response = await axios.post(
-        "http://10.0.2.2:8080/historyService/createHistory",
+        APIAddress + "/historyService/createHistory",
         {
           status: "Pending",
           date: date?.toString(),

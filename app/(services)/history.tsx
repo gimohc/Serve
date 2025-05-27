@@ -5,6 +5,7 @@ import MainMenuArrow from "@/components/mainMenuArrow";
 import axios from "axios";
 import { AuthContext } from "@/contexts/authContext";
 import { FullWindowOverlay } from "react-native-screens";
+import { APIAddress } from "@/constants/API_KEY";
 
 export const status = {
   COMPLETE: "Finished",
@@ -118,7 +119,7 @@ const History = () => {
     const fetchHistoryEntries = async () => {
       try {
         const response = await axios.get(
-          "http://10.0.2.2:8080/historyService/getHistoryByUserId/" +
+          APIAddress + "/historyService/getHistoryByUserId/" +
             userId.user?.id
         );
         const data = response.data;

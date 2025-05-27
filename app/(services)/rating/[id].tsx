@@ -11,6 +11,7 @@ import RatingContainer from "@/components/ratingContainer";
 import { colors } from "@/constants/colors";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import axios from "axios";
+import { APIAddress } from "@/constants/API_KEY";
 
 // orderRoute={`${props.id} - ${props.provider} - ${props.serviceType}`} without spaces is what this page is getting
 
@@ -33,7 +34,7 @@ interface RateOrderProps {
 const rateOrder = async (rating: number, feedback: string) => {
   try {
     const response = await axios.get(
-      "http://10.0.2.2:8080/historyService/setOrderRatingByOrderId/" +
+      APIAddress + "/historyService/setOrderRatingByOrderId/" +
         rating +
         feedback
     );
