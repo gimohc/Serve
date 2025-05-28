@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   button: {
-    width: "25%",
+    width: "40%",
     backgroundColor: colors.DARK_GRAY,
   },
   row: {

@@ -17,10 +17,8 @@ const ChatArea = ({ messages }: chatAreaProps) => {
           return (
             <Message
               key={"Message" + message.id}
-              message={message.message}
-              clientSent={message.clientSent}
-              sideId={message.sideId}
-            />
+              value={message.value}
+              clientSent={message.clientSent} id={0}            />
           );
         })}
       </ScrollView>

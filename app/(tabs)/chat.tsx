@@ -8,7 +8,6 @@ import { message } from "@/components/message";
 import { chatUser } from "@/components/chatUser";
 import { MessageContext } from "@/contexts/messageContext";
 
-/*
 const users: chatUser[] = [
   { id: 1, name: "Store 1" },
   { id: 2, name: "Store 2" },
@@ -30,27 +29,27 @@ const users: chatUser[] = [
 const messages: message[] = [
   {
     id: 1,
-    userID: 1,
-    sideId: 1,
-    message: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    clientId: 1,
+    providerId: 1,
+    value: "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     clientSent: true,
   },
   {
     id: 2,
-    userID: 2,
-    sideId: 1,
-    message: "aaaa",
+    clientId: 2,
+    providerId: 1,
+    value: "aaaa",
     clientSent: false,
   },
   {
     id: 3,
-    userID: 2,
-    sideId: 1,
-    message: "aaaa",
+    clientId:2,
+    providerId:1,
+    value: "aaaa",
     clientSent: false,
   },
 ];
-*/
+
 
 //const getContactsByUserId = async () => {
 
@@ -63,9 +62,9 @@ const Chat = () => {
   });
   const [chatsHidden, setChatsHidden] = useState<boolean>(false);
 
-  const [contacts, setContacts] = useState<chatUser[]>();
+  const [contacts, setContacts] = useState<chatUser[]>(users);
 
-  const [messagesList, setMessagesList] = useState<message[]>();
+  const [messagesList, setMessagesList] = useState<message[]>(messages);
 
 
   return (
