@@ -32,6 +32,7 @@ function ProfileDetails() {
             placeholder="eg. John Doe"
             value={fullName}
             setValue={setFullName}
+            disabled
           />
           <Input
             phone
@@ -46,6 +47,7 @@ function ProfileDetails() {
             setValue={setEmail}
             keyboardType="email-address"
             placeholder="johndoe@email.com"
+            disabled
           />
 
           <View style={styles.row}>
@@ -55,6 +57,7 @@ function ProfileDetails() {
               value={birthday}
               setValue={setBirthday}
               placeholder="Birthday"
+              disabled
             />
             <Input
               disabled

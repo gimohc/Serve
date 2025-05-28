@@ -13,8 +13,9 @@ interface DateInputProps {
   setValue: Dispatch<SetStateAction<DateType>>;
   style?: ViewStyle;
   placeholder?:string;
+  disabled?:true;
 }
-const DateInput = ({ title, style, value, setValue, placeholder }: DateInputProps) => {
+const DateInput = ({ disabled, title, style, value, setValue, placeholder }: DateInputProps) => {
   const [showCalendar, setShowCalendar] = useState<boolean>(false);
   const defaultStyles = useDefaultStyles();
   return (
@@ -28,7 +29,7 @@ const DateInput = ({ title, style, value, setValue, placeholder }: DateInputProp
           disabled
         />
       </Pressable>
-      {showCalendar && (
+      {showCalendar && !disabled && (
         <View style={styles.dateContainer}>
           <DateTimePicker
             mode="single"
