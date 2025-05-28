@@ -37,7 +37,7 @@ const Store = () => {
   // get service provider by id
   const [provider, setProvider] = useState<serviceProvider>();
 
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   /*const provider: serviceProvider = {
     type: "Any",
@@ -51,19 +51,23 @@ const Store = () => {
 
   useEffect(() => {
     const fetchProviderObject = async () => {
-      const responseData = await getProviderObjectById(id.toString());
-      if (responseData != null) setProvider(responseData);
+      try {
+        const responseData = await getProviderObjectById(id.toString());
+        setLoading(false);
+        if (responseData != null) setProvider(responseData);
+      } catch (error) {
+        window.alert("unable to get provider details");
+      }
+      setLoading(false)
     };
-    setLoading(true);
     fetchProviderObject();
-    setLoading(false);
   }, [provider]);
 
   return (
     <View>
+      {loading && <Loading />}
       {provider != null && provider != undefined && (
         <>
-        {loading && <Loading/>}
           <View style={styles.header}>
             <MainMenuArrow />
             <Image

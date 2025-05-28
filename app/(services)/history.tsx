@@ -115,39 +115,50 @@ export const status = {
 */
 const History = () => {
   const [historyEntries, setHistoryEntries] = useState<HistoryEntryProps[]>();
-
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const userId = useContext(AuthContext);
   useEffect(() => {
+    
     const fetchHistoryEntries = async () => {
+      
       try {
         const response = await axios.get(
-          APIAddress + "/historyService/getHistoryByUserId/" +
-            userId.user?.id
+          APIAddress + "/historyService/getHistoryByUserId/" + userId.user?.id
         );
+        setLoading(false);
         const data = response.data;
         setHistoryEntries(data);
       } catch (error) {
         console.error("Unable to fetch user history");
         window.alert("Unable to fetch user history");
+        setLoading(false);
       }
+      
     };
-    setLoading(true);
+    
     fetchHistoryEntries();
-    setLoading(false);
-  }, []);
+    
+  }, [historyEntries]);
   return (
     <>
-      {loading && <Loading/>}
+      {loading && <Loading />}
       <MainMenuArrow />
       <Text style={styles.headerText}> Order History </Text>
-      <ScrollView style={styles.container}>
-        {historyEntries?.map((order) => {
-          return <HistoryEntry setLoading={setLoading} key={"Service" + order.orderId} {...order} />;
-        })}
-        <Text>{historyEntries?.length == 0 ? "No orders placed yet" : ""}</Text>
-      </ScrollView>
+      {historyEntries != undefined &&  historyEntries?.length == 0 ? (
+        <Text>"No orders placed yet"</Text>
+      ) : (
+        <ScrollView style={styles.container}>
+          {historyEntries?.map((order) => {
+            return order? (
+              <HistoryEntry
+                key={"Service" + order.orderId}
+                {...order}
+              />
+            ) : ( <Text>test </Text>);
+          })}
+        </ScrollView>
+      )}
     </>
   );
 };

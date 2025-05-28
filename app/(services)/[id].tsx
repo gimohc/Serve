@@ -84,19 +84,22 @@ const Stores = () => {
   useEffect(() => {
     const fetchProvidersListBySubService = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(
           APIAddress+"/serviceProviders/subtype/"+id
         );
         const data = response.data;
+        setLoading(false);
         setProviders(data);
       } catch (error) {
         console.error("Unable to fetch providers list" + error);
         window.alert("Unable to fetch providers list" + error);
       }
+      setLoading(false);
     };
-    setLoading(true);
+    
     fetchProvidersListBySubService();
-    setLoading(false);
+    
   }, []); // assign retrieved list
 
   // search query

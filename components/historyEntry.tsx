@@ -7,6 +7,7 @@ import CustomButton from "./button";
 import { status } from "@/app/(services)/history";
 import axios from "axios";
 import { getProviderNameById } from "@/app/(services)/rating/[id]";
+import { APIAddress } from "@/constants/API_KEY";
 
 // accepted/pending -> cancelled
 export interface HistoryEntryProps {
@@ -24,7 +25,15 @@ export interface HistoryEntryProps {
 }
 
 export const cancelOrder = async (id: string | number) => {
-  axios.put("http:/10.0.2.2:8080/historyService/cancelOrderByOrderId/" + id);
+  try {
+    const response = axios.put(
+      APIAddress + "/historyService/cancelOrderByOrderId/" + id
+    );
+    window.alert("Order cancelled");
+  } catch (error) {
+    console.error("Unable to cancel order");
+    window.alert("Unable to cancel order")
+  }
 };
 
 const getColor = (statusString: string): { color: string } => {
@@ -39,19 +48,14 @@ const getColor = (statusString: string): { color: string } => {
       return { color: "lime" };
   }
 };
-interface HistoryEntryProps2 {
-  setLoading: Dispatch<SetStateAction<boolean>>;
-}
-const HistoryEntry = ({setLoading} : HistoryEntryProps2, props: HistoryEntryProps) => {
+const HistoryEntry = (props: HistoryEntryProps) => {
   const [name, setName] = useState("" + props.providerId);
   const fetchProviderNameById = async () => {
     const name = await getProviderNameById(props.providerId);
     setName(name);
   };
   useEffect(() => {
-    setLoading(true);
     fetchProviderNameById();
-    setLoading(false)
   });
   return (
     <View style={styles.container}>
