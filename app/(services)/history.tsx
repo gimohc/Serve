@@ -6,6 +6,7 @@ import axios from "axios";
 import { AuthContext } from "@/contexts/authContext";
 import { FullWindowOverlay } from "react-native-screens";
 import { APIAddress } from "@/constants/API_KEY";
+import Loading from "@/components/loading";
 
 export const status = {
   COMPLETE: "Finished",
@@ -133,6 +134,7 @@ const History = () => {
   }, []);
   return (
     <>
+      <Loading/>
       <MainMenuArrow />
       <Text style={styles.headerText}> Order History </Text>
       <ScrollView style={styles.container}>

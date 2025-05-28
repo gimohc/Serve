@@ -5,18 +5,17 @@ import { AuthContext } from "@/contexts/authContext";
 import { MessageContext } from "@/contexts/messageContext";
 
 export interface message extends messageProps {
-  id: number;
-  userID: number;
-  sideId: number;
+  clientId: number;
+  providerId: number;
 }
 
 export interface messageProps {
-  message: string;
+  id: number;
+  value: string;
   clientSent: boolean; // true for client sent / false for provider sent
-  sideId: number;
 }
 
-const Message = ({ message, clientSent }: messageProps) => {
+const Message = ({ value, clientSent }: messageProps) => {
   const { user } = useContext(AuthContext);
   const messageContext = useContext(MessageContext);
 
@@ -26,7 +25,7 @@ const Message = ({ message, clientSent }: messageProps) => {
         {clientSent ? user?.fullName : messageContext?.user.name}
       </Text>
       <View style={[styles.container, !clientSent && styles.storeSent]}>
-        <Text style={styles.messageText}> {message} </Text>
+        <Text style={styles.messageText}> {value} </Text>
       </View>
     </>
   );

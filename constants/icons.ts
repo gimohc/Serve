@@ -22,5 +22,6 @@ export const images = {
     information: require("../assets/images/info-circle-icon.png"),
     logout: require("../assets/images/logout-line-icon.png"),
     flag_jo: require("../assets/images/jordan-flag-icon.png"),
-    check: require("../assets/images/check-icon.png")
+    check: require("../assets/images/check-icon.png"),
+    loading: require("../assets/images/loading.gif"),
 } 
