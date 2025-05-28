@@ -26,35 +26,32 @@ function Register() {
   const [email, setEmail] = useState<string>("");
   const [gender, setGender] = useState<boolean | null>(null);
   const [dateOfBirth, setDateOfBirth] = useState<DateType>();
-  const stayLoggedInToken = '';
+  const stayLoggedInToken = "";
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
-    
     try {
-      if (
-        !name ||
-        !phoneNumber ||
-        !email ||
-        !dateOfBirth ||
-        !password
-      ) {
+      if (phoneNumber.trim().length < 9) {
+        window.alert("Enter the correct number");
+        return;
+      }
+      if (!name || !phoneNumber || !email || !dateOfBirth || !password) {
         window.alert("Please fill in all required fields");
         return;
       }
-      setLoading(true)
+      setLoading(true);
       const response = await axios.post(
-        APIAddress+"/ClientController/create",
+        APIAddress + "/ClientController/create",
         {
           name,
           phoneNumber,
           email,
-          dateOfBirth : dateOfBirth.toString(),
-          gender: gender?"Male":"Female",
+          dateOfBirth: dateOfBirth.toString(),
+          gender: gender ? "Male" : "Female",
           password,
-          stayLoggedInToken
-        },
+          stayLoggedInToken,
+        }
       );
 
       window.alert(response.data.message || "Validation successful");
@@ -71,12 +68,12 @@ function Register() {
         console.error("An unexpected error occurred");
       }
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   return (
     <>
-      {loading && <Loading/>}
+      {loading && <Loading />}
       <Text style={styles.header}> Register </Text>
       <View style={styles.container}>
         <Input

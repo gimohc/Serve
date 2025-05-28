@@ -21,6 +21,10 @@ function Login() {
   const [loading, setLoading] = useState<boolean>(false);
 
   const validateLogin = async () => {
+    if(phoneNumber.trim().length <9) {
+      window.alert("Enter the correct number");
+      return;
+    }
     if(phoneNumber.trim() == "" || password.trim() == "") {
       window.alert("Fill in required fields");
       return;

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { colors } from "@/constants/colors";
 import RateButton from "./rateButton";
 import RatingContainer from "./ratingContainer";
@@ -39,14 +39,19 @@ const getColor = (statusString: string): { color: string } => {
       return { color: "lime" };
   }
 };
-const HistoryEntry = (props: HistoryEntryProps) => {
+interface HistoryEntryProps2 {
+  setLoading: Dispatch<SetStateAction<boolean>>;
+}
+const HistoryEntry = ({setLoading} : HistoryEntryProps2, props: HistoryEntryProps) => {
   const [name, setName] = useState("" + props.providerId);
   const fetchProviderNameById = async () => {
     const name = await getProviderNameById(props.providerId);
     setName(name);
   };
   useEffect(() => {
+    setLoading(true);
     fetchProviderNameById();
+    setLoading(false)
   });
   return (
     <View style={styles.container}>

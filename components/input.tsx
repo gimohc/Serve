@@ -60,6 +60,7 @@ export default function Input({
             phone && { paddingLeft: 70 },
             textStyle
           ]}
+          maxLength={phone && 9}
           placeholder={placeholder}
           value={value?.toString()}
           onChangeText={setValue}

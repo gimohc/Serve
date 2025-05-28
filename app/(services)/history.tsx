@@ -144,7 +144,7 @@ const History = () => {
       <Text style={styles.headerText}> Order History </Text>
       <ScrollView style={styles.container}>
         {historyEntries?.map((order) => {
-          return <HistoryEntry key={"Service" + order.orderId} {...order} />;
+          return <HistoryEntry setLoading={setLoading} key={"Service" + order.orderId} {...order} />;
         })}
         <Text>{historyEntries?.length == 0 ? "No orders placed yet" : ""}</Text>
       </ScrollView>
