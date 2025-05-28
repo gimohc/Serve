@@ -14,6 +14,7 @@ import MainMenuArrow from "@/components/mainMenuArrow";
 import { sub } from "@/constants/subServices";
 import axios from "axios";
 import { APIAddress } from "@/constants/API_KEY";
+import Loading from "@/components/loading";
 
 // local params return what this specific store provides
 
@@ -36,6 +37,8 @@ const Store = () => {
   // get service provider by id
   const [provider, setProvider] = useState<serviceProvider>();
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   /*const provider: serviceProvider = {
     type: "Any",
     subTypes: ["Maintenance", "Cleaning", "Upgrading", "Service 4"],
@@ -51,13 +54,16 @@ const Store = () => {
       const responseData = await getProviderObjectById(id.toString());
       if (responseData != null) setProvider(responseData);
     };
+    setLoading(true);
     fetchProviderObject();
+    setLoading(false);
   }, [provider]);
 
   return (
     <View>
       {provider != null && provider != undefined && (
         <>
+        {loading && <Loading/>}
           <View style={styles.header}>
             <MainMenuArrow />
             <Image

@@ -1,5 +1,6 @@
 import CustomButton from "@/components/button";
 import Input from "@/components/input";
+import Loading from "@/components/loading";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import PressableText from "@/components/pressableText";
 import StayLogged from "@/components/stayLogged";
@@ -17,7 +18,14 @@ function Login() {
   const [stayLogged, setStayLogged] = useState<boolean>(false);
   const { login } = useContext(AuthContext);
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const validateLogin = async () => {
+    if(phoneNumber.trim() == "" || password.trim() == "") {
+      window.alert("Fill in required fields");
+      return;
+    }
+    setLoading(true)
     try {
       const response = await axios.get(
         `${APIAddress}/ClientController/login/${phoneNumber}/${password}`
@@ -31,10 +39,11 @@ function Login() {
       console.log(error);
       window.alert("Invalid login/ unable to retrieve login details");
     }
+    setLoading(false);
   };
   return (
     <>
-      <MainMenuArrow />
+      {loading && <Loading/>}
       <Text style={styles.header}> Login </Text>
       <View style={styles.container}>
         <Input

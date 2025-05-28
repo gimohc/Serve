@@ -10,6 +10,7 @@ import React, { useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { DateType } from "react-native-ui-datepicker";
 import axios from "axios";
+import Loading from "@/components/loading";
 
 export const genders: { [key: string]: boolean | null } = {
   "Select Gender": null,
@@ -27,8 +28,10 @@ function Register() {
   const [dateOfBirth, setDateOfBirth] = useState<DateType>();
   const stayLoggedInToken = '';
 
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleSubmit = async () => {
+    
     try {
       if (
         !name ||
@@ -40,7 +43,7 @@ function Register() {
         window.alert("Please fill in all required fields");
         return;
       }
-
+      setLoading(true)
       const response = await axios.post(
         APIAddress+"/ClientController/create",
         {
@@ -68,11 +71,12 @@ function Register() {
         console.error("An unexpected error occurred");
       }
     }
+    setLoading(false)
   };
 
   return (
     <>
-      <MainMenuArrow />
+      {loading && <Loading/>}
       <Text style={styles.header}> Register </Text>
       <View style={styles.container}>
         <Input

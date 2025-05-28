@@ -12,10 +12,13 @@ import { colors } from "@/constants/colors";
 import MainMenuArrow from "@/components/mainMenuArrow";
 import axios from "axios";
 import { APIAddress } from "@/constants/API_KEY";
+import Loading from "@/components/loading";
 
 // orderRoute={`${props.id} - ${props.provider} - ${props.serviceType}`} without spaces is what this page is getting
 
-export const getProviderNameById = async (id: number | string) : Promise<string> => {
+export const getProviderNameById = async (
+  id: number | string
+): Promise<string> => {
   try {
     const response = await axios.get(
       "http://10.0.2.2:8080/serviceProviders/getServiceProviderNameById/" + id
@@ -31,32 +34,39 @@ interface RateOrderProps {
   rating: number;
   feedback: string;
 }
-const rateOrder = async (rating: number, feedback: string) => {
-  try {
-    const response = await axios.get(
-      APIAddress + "/historyService/setOrderRatingByOrderId/" +
-        rating +
-        feedback
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching provider name");
-    throw error;
-  }
-};
 
 export default function Rating() {
   const [rating, setRating] = useState<number>(5);
   const [feedback, setFeedback] = useState<string>("");
   const [providerName, setProviderName] = useState<string>("None");
+
+  const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
     const fetchProviderNameById = async () => {
       const name = await getProviderNameById(parameters[1]);
       setProviderName(name);
     };
+    setLoading(true);
     fetchProviderNameById();
+    setLoading(false);
   }, []);
 
+  const rateOrder = async (rating: number, feedback: string) => {
+    setLoading(true);
+    try {
+      const response = await axios.get(
+        APIAddress +
+          "/historyService/setOrderRatingByOrderId/" +
+          rating +
+          feedback
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching provider name");
+    }
+    setLoading(false);
+  };
   const { id } = useLocalSearchParams();
 
   const string = id.toString();
@@ -67,6 +77,7 @@ export default function Rating() {
 
   return (
     <View style={styles.page}>
+      {loading && <Loading />}
       <MainMenuArrow />
       <Text style={styles.header}>Order Rating</Text>
 

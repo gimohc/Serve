@@ -8,6 +8,7 @@ import Input from "@/components/input";
 import DropDownList from "@/components/dropDownList";
 import axios from "axios";
 import { APIAddress } from "@/constants/API_KEY";
+import Loading from "@/components/loading";
 
 // local params return the type of sub service for backend request of available stores
 /*
@@ -75,6 +76,8 @@ const Stores = () => {
   const [orderBy, setOrderBy] = useState<string>("None");
   const [providers, setProviders] = useState<serviceProvider[] | null>(null);
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   //subservice name
   const { id } = useLocalSearchParams();
 
@@ -91,7 +94,9 @@ const Stores = () => {
         window.alert("Unable to fetch providers list" + error);
       }
     };
+    setLoading(true);
     fetchProvidersListBySubService();
+    setLoading(false);
   }, []); // assign retrieved list
 
   // search query
@@ -112,6 +117,7 @@ const Stores = () => {
 
   return (
     <View>
+      {loading && <Loading/>}
       <MainMenuArrow />
       {displayedProvidersList != null ? (
         <>

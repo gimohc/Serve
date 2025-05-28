@@ -115,6 +115,9 @@ export const status = {
 */
 const History = () => {
   const [historyEntries, setHistoryEntries] = useState<HistoryEntryProps[]>();
+
+  const [loading, setLoading] = useState<boolean>(false);
+
   const userId = useContext(AuthContext);
   useEffect(() => {
     const fetchHistoryEntries = async () => {
@@ -130,11 +133,13 @@ const History = () => {
         window.alert("Unable to fetch user history");
       }
     };
+    setLoading(true);
     fetchHistoryEntries();
+    setLoading(false);
   }, []);
   return (
     <>
-      <Loading/>
+      {loading && <Loading/>}
       <MainMenuArrow />
       <Text style={styles.headerText}> Order History </Text>
       <ScrollView style={styles.container}>

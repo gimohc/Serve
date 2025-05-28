@@ -11,6 +11,7 @@ import { colors } from "@/constants/colors";
 import axios from "axios";
 import { AuthContext } from "@/contexts/authContext";
 import { APIAddress } from "@/constants/API_KEY";
+import Loading from "@/components/loading";
 
 const getSubServiceByName = (string: string) => {
   return sub.filter((e) => e.subService == string).at(0);
@@ -22,7 +23,10 @@ const ConfirmOrder = () => {
   const parameters = id.toString().split("-");
   const subServiceObject = getSubServiceByName(parameters[1]);
 
+  const [loading, setLoading] = useState<boolean>(false);
+
   const createOrder = async () => {
+    setLoading(true)
     try {
       const response = await axios.post(
         APIAddress + "/historyService/createHistory",
@@ -44,11 +48,13 @@ const ConfirmOrder = () => {
       console.error("Unable to complete order");
       window.alert("Error completing order");
     }
+    setLoading(false)
   };
   // service - subservice - providerID
   return (
     <View style={{ padding: 25 }}>
       <MainMenuArrow />
+      {loading && <Loading/>}
       <Text style={styles.textHeader}> Confirm order </Text>
 
       <Text style={styles.range}>Expected Price range</Text>
